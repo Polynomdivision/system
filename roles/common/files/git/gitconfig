@@ -1,0 +1,6 @@
+[user]
+	email = digitalmail555@googlemail.com
+	name = Alexander Polynomdivision
+
+[core]
+	editor = nvim

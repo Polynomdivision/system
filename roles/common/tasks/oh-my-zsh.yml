@@ -1,0 +1,6 @@
+---
+- name: Clone oh-my-zsh
+  command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Polynomdivision/oh-my-zsh/polynom/tools/install.sh)"
+  args:
+    chdir: '{{ user_home }}'
+

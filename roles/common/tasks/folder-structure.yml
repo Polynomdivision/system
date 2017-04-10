@@ -1,0 +1,10 @@
+---
+- name: Create the Development folder
+  file:
+    state: directory
+    path: '{{ user_home }}/Development'
+
+- name: Create the Build folder
+  file:
+    state: directory
+    path: '{{ user_home  }}/Build'

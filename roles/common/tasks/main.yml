@@ -1,0 +1,7 @@
+---
+- include: folder-structure.ym
+- include: basics.yml
+# We need to have git before oh-my-zsh, since we need to clone the repository 
+- include: git.yml
+- include: zsh.yml
+- include: oh-my-zsh.yml

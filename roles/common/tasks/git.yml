@@ -1,0 +1,10 @@
+---
+- name: Install git
+  pacman:
+    name: git
+
+- name: Configure git
+  file:
+    state: link
+    src: '{{ role_path }}/files/git/gitconfig'
+    dest: '{{ user_home }}/.gitconfig'
