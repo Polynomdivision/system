@@ -8,3 +8,5 @@
   file:
     state: directory
     path: '{{ user_home  }}/Build'
+
+# TODO: Maybe add the /mnt/... mount points

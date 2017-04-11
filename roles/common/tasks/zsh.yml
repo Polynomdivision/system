@@ -6,6 +6,7 @@
 - name: Install the configuration of zsh (and bash)
   file:
     state: link
+    force: yes
     src: '{{ role_path  }}/files/zsh/{{ item }}'
     dest: '{{ user_home }}/.{{ item }}'
   with_items:

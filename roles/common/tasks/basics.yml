@@ -2,3 +2,24 @@
 - name: Install curl
   pacman:
     name: curl
+  become: yes
+
+- name: Install buildtools
+  pacman:
+    name: cmake,make
+  become: yes
+
+- name: Install compiler
+  pacman:
+    name: clang
+  become: yes
+
+- name: Install languages
+  pacman:
+    name: python2,python,nodejs
+  become: yes
+
+- name: Install package manager
+  pacman:
+    name: npm,python-pip
+  become: yes
