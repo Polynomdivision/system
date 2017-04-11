@@ -1,0 +1,10 @@
+---
+- name: Install compton
+  pacman:
+    name: compton
+
+- name: Install the compton configuration
+  file:
+    state: link
+    src: '{{ role_path }}/files/compton/config.conf'
+    dest: '{{ user_home }}/.compton.conf'

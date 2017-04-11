@@ -32,3 +32,14 @@
     chdir: '{{ user_home }}/Build/i3-gaps/build'
     target: install
   become: yes
+
+- name: Create the i3 config directory
+  file:
+     state: directory
+     path: '{{ user_home }}/.config/i3'
+
+- name: Install the i3 config
+  file:
+      state: link
+      src: '{{ role_path }}/files/i3/config'
+      dest: '{{ user_home }}/.config/i3/config'

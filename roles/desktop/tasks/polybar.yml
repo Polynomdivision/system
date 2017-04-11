@@ -25,3 +25,20 @@
     params:
         NUM_THREADS: 4
   become: yes
+
+- block:
+    - name: Creating polybar's config directory
+      file:
+        state: directory
+        path: '{{ user_home }}/.config/polybar'
+    - name: Installing the polybar config
+      file:
+        state: link
+        src: '{{ role_path }}/files/polybar/config'
+        dest: '{{ user_home }}/.config/polybar/config'
+    - name: Installing the launch wrapper
+      file:
+        state: link
+        src: '{{ role_path }}/files/polybar/launch.sh'
+        dest: '{{ user_home }}/.config/polybar/launch.sh'
+        mode: 0755
