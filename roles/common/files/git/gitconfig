@@ -3,4 +3,4 @@
 	name = Alexander Polynomdivision
 
 [core]
-	editor = nvim
+	editor = rvim
