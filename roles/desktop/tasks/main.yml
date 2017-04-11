@@ -1,2 +1,3 @@
 ---
 - include: polybar.yml
+- include: i3-gaps.yml
