@@ -4,6 +4,11 @@
     state: directory
     path: '{{ user_home }}/Development'
 
+- name: Development/Docker
+  file:
+    state: directory
+    path: '{{ user_home }}/Development/Docker'
+
 - name: Create the Build folder
   file:
     state: directory
