@@ -1,0 +1,27 @@
+---
+- name: Install polybar's dependencies
+  pacman:
+    name: xcb-util-image,xcb-util-wm,xcb-util-xrm
+
+- name: Clone polybar's source
+  git:
+    repo: 'https://github.com/jaagr/polybar.git'
+    clone: yes
+    recursive: yes
+    dest: '{{ user_home }}/Build/polybar'
+
+- block:
+    - name: Create build directory
+      file:
+        path: '{{ user_home }}/Build/polybar/build'
+        state: directory
+    - name: Generate the makefile
+      command: cmake .. chdir='{{ user_home }}/Build/polybar/build'
+
+- name: Build polybar
+  make:
+    chdir: '{{ user_home }}/Build/polybar/build'
+    target: install
+    params:
+        NUM_THREADS: 4
+  become: yes
