@@ -1,0 +1,31 @@
+---
+- name: Installing KDE Plasma and LXQT
+  pacman:
+    name: plasma,lxqt
+  become: yes
+
+- name: Installing the LXQT configuration
+  copy:
+    src: '{{ role_path }}/files/lxqt/{{ item }}'
+    dest: '{{ user_home }}/.config/lxqt/{{ item }}'
+    force: yes
+  with_items:
+    - lxqt.conf
+    - sessions.conf
+
+- name: Installing SDDM
+  pacman:
+    name: sddm
+  become: yes
+
+- name: Installing the SDDM config
+  copy:
+    src: '{{ role_path }}/sddm/config'
+    dest: '/etc/sddm.conf'
+  become: yes
+
+- name: Enabling SDDM
+  systemd:
+    enabled: yes
+    state: started
+  become: yes
