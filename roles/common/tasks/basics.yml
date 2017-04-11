@@ -6,7 +6,7 @@
 
 - name: Install buildtools
   pacman:
-    name: cmake,make
+    name: cmake,make,autoconf
   become: yes
 
 - name: Install compiler
