@@ -5,3 +5,15 @@
     dest: /etc/sysctl.d/51-kernel.conf
     mode: 0644
   become: yes
+
+- block:
+    - name: Installing hidepid
+      pacman:
+        name: hidepid
+      become: yes
+    - name: Enabling and starting hidepid
+      systemd:
+        enabled: yes
+        state: started
+        name: hidepid.service
+      become: yes
