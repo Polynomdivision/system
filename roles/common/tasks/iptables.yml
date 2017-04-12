@@ -1,0 +1,37 @@
+---
+- name: Installing the iptable tools
+  pacman:
+    name: iptables
+
+- block:
+    - name: Applying iptable rules
+      iptables:
+        chain: INPUT
+        policy: DROP
+      become: yes
+      # Accept packets from connections we initiated
+    - iptables:
+        chain: INPUT
+        action: APPEND
+        ctstate: ESTABLISHED
+        jump: ACCEPT
+      become: yes
+      # Accept packets coming from localhost to localhost
+    - iptables:
+        chain: INPUT
+        action: APPEND
+        source: 127.0.0.1
+        destination: 127.0.0.1
+        jump: ACCEPT
+      become: yes
+
+# systemd only!
+- block:
+    - name: Saving the iptable rules
+      shell: iptables-save > /etc/iptables/iptables.rules
+      become: yes
+    - name: Starting and enabling the iptables service
+      systemd:
+        state: started
+        enabled: yes
+        name: iptables.service
