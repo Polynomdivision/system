@@ -1,15 +1,4 @@
 ---
-- name: Install docker
-  pacman:
-    name: docker
-  become: yes
-
-- name: Enabling docker
-  systemd:
-    enabled: yes
-    state: started
-  become: yes
-
 - name: Docker Service; NeoVim
   block:
       - name: Clone docker_neovim

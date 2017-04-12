@@ -1,0 +1,23 @@
+---
+- name: Installing docker
+  pacman:
+    name: docker
+
+- name: Enabling docker
+  systemd:
+    enabled: yes
+    state: started
+  become: yes
+
+
+# We use systemd, so it's needed
+- name: Create docker's configuration directory
+  file:
+    state: directory
+    path: /usr/systemd/system/docker.service.d
+
+- name: Install custom daemon settings
+  copy:
+    src: '{{ role_path }}/files/no_icc.conf'
+    dest: /usr/systemd/system/docker.service.d/no_icc.conf
+    mode: 0644
