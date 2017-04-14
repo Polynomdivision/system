@@ -1,6 +1,7 @@
 ---
 - include: kernel-sec.yml
 - include: security.yml
+- include: sudo.yml
 - include: folder-structure.yml
 - include: basics.yml
 # We need to have git before oh-my-zsh, since we need to clone the repository 

@@ -1,0 +1,20 @@
+##
+## Defaults
+##
+# Allow my docker services to be executed
+Defaults env_keep += "USERID GROUPID"
+
+##
+## User privilege specification
+##
+root ALL=(ALL) ALL
+
+# Allow members of sudo to execute any command
+%sudo	ALL=(ALL) ALL
+
+# Allow alexander to execute the following files using sudo with no password
+alexander ALL=(ALL) NOPASSWD: /usr/local/bin/nvim, /usr/local/bin/docker_intellij, /usr/local/bin/docker_vscode
+
+## Read drop-in files from /etc/sudoers.d
+## (the '#' here does not indicate a comment)
+#includedir /etc/sudoers.d

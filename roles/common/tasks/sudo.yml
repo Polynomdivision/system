@@ -1,0 +1,7 @@
+---
+- name: Install the custom sudo policies
+  copy:
+    src: '{{ role_path }}/files/sudo/sudoers'
+    dest: /etc/sudoers
+    owner: root
+    mode: 0440
