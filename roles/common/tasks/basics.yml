@@ -9,6 +9,11 @@
     name: cmake,make,autoconf
   become: yes
 
+- name: Install GNU utils
+  pacman:
+    name: sed
+  become: yes
+
 - name: Install compiler
   pacman:
     name: clang
@@ -19,7 +24,7 @@
     name: python2,python,nodejs
   become: yes
 
-- name: Install package manager
+- name: Install package managers
   pacman:
     name: npm,python-pip
   become: yes

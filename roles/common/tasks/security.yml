@@ -1,0 +1,9 @@
+---
+- block:
+    - name: Disabling root login in /etc/passwd
+      command: sed 's/root\:x\:0\:0\:root\:\/root\:.*/root\:x\:0\:0\:root\:\/root\:\/sbin\/nologin/' /etc/passwd
+      become: yes
+
+    - name: Disabling root login in /etc/passwd-
+      command: sed 's/root\:x\:0\:0\:root\:\/root\:.*/root\:x\:0\:0\:root\:\/root\:\/sbin\/nologin/' /etc/passwd-
+      become: yes
