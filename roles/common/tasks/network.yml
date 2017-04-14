@@ -3,6 +3,10 @@
   hostname:
     name: '{{ hostname }}'
 
+- name: Adding the hostname to /etc/hosts
+  shell: echo '127.0.0.1        local.{{ hostname }} {{ hostname }}' >> /etc/hosts
+  become: yes
+
 - name: Installing NetworkManager
   pacman:
     name: networkmanager
