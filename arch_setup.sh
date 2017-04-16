@@ -85,6 +85,7 @@ useradd alexander -G sudo
 usermod --password $alexander_PW alexander
 mkdir -p /home/alexander
 chown alexander /home/alexander
+chmod -R 700 /home/alexander
 
 mkdir -p /home/alexander/Development/Misc
 mv /Setup /home/alexander/Development/SysAdm/Setup
