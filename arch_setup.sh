@@ -86,14 +86,14 @@ chmod -R 700 /home/alexander
 
 mkdir -p /home/alexander/Development/SysAdm/
 pacman -S --noconfirm ansible git
-git clone https://github.com/Polynomdivision/ts_application_template.git /home/alexander/Development/SysAdm/System
+git clone https://github.com/Polynomdivision/system.git /home/alexander/Development/SysAdm/System
 ansible-playbook /home/alexander/Development/SysAdm/System/system_$INSTALL_MODE.yml
 
 exit
 EOF
 
 echo "==============================================="
-echo "\n\n\nWAITING 15 SECONDS BEFORE REBOOTING\n\n\n"
+echo -n "\n\n\nWAITING 15 SECONDS BEFORE REBOOTING\n\n\n"
 echo "==============================================="
 sleep 15
 umount -R /mnt
