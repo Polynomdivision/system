@@ -3,3 +3,5 @@
   pacman:
     name: nmap
   become: yes
+
+- include: neovim.yml

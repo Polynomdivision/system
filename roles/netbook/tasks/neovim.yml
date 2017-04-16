@@ -1,0 +1,31 @@
+---
+- name: Install neovim
+  pacman:
+    name: neovim
+  become: yes
+
+- name: Create neovim's configuration directory
+  file:
+    state: directory
+    path: '{{ user_home }}/.config/nvim'
+
+- name: Clone docker_neovim to extract the neovim configuration
+  git:
+    clone: yes
+    repo: 'https://github.com/Polynomdivision/docker_neovim.git'
+    dest: '{{ user_home }}/docker_neovim'
+
+- block:
+  - name: Extract the ftplugin configuration
+    copy:
+      src: '{{ user_home }}/docker_neovim/data/ftplugin'
+      dest: '{{ user_home }}/.config/nvim/ftplugin'
+  - name: Extract the neovimrc
+    copy:
+      src: '{{ user_home }}/docker_neovim/data/neovimrc'
+      dest: '{{ user_home }}/.config/nvim/init.vim'
+
+- name: Remove docker_neovim
+  file:
+    state: absent
+    path: '{{ user_home }}/docker_neovim'
