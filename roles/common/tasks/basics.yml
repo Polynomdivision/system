@@ -28,3 +28,8 @@
   pacman:
     name: npm,python-pip
   become: yes
+
+- name: Install a terminal multiplexer
+  pacman:
+    name: tmux
+  become: yes
