@@ -1,4 +1,4 @@
 - hosts: 127.0.0.1
   connection: local
   roles:
-    - { role: desktop, user: 'alexander', host: 'miku' }
+    - { role: desktop, user: 'alexander', hostname: 'miku' }

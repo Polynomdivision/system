@@ -29,7 +29,7 @@
     name: npm,python-pip
   become: yes
 
-- name: Install a terminal multiplexer
+- name: Install a terminal multiplexer (tmux)
   pacman:
     name: tmux
   become: yes

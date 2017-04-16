@@ -12,14 +12,14 @@
       # Accept packets from connections we initiated
     - iptables:
         chain: INPUT
-        action: APPEND
+        action: append
         ctstate: ESTABLISHED
         jump: ACCEPT
       become: yes
       # Accept packets coming from localhost to localhost
     - iptables:
         chain: INPUT
-        action: APPEND
+        action: append
         source: 127.0.0.1
         destination: 127.0.0.1
         jump: ACCEPT
