@@ -1,0 +1,8 @@
+---
+- name: Install X11 and xinit
+  pacman:
+    name: xorg-server, xorg-xinit
+
+- name: Set the german keyboard layout
+  command: localectl set-x11-keymap de
+  become: yes

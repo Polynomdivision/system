@@ -1,0 +1,4 @@
+---
+- include: x11.yml
+- include: i3-gaps.yml
+- include: sddm.yml
