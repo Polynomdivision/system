@@ -59,9 +59,6 @@ pacstrap -i /mnt base base-devel
 echo "[ UPDATING FSTAB ]"
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# Copy the Ansible playbook to the new root directory
-cp -r /run/archiso/bootmnt/Setup /mnt
-
 # Dive into the chroot environment
 cat << EOF | arch-chroot /mnt
 hwclock --hctosys
@@ -87,18 +84,17 @@ mkdir -p /home/alexander
 chown alexander /home/alexander
 chmod -R 700 /home/alexander
 
-mkdir -p /home/alexander/Development/Misc
-mv /Setup /home/alexander/Development/SysAdm/Setup
-pacman -S --noconfirm ansible
-ansible-playbook /home/alexander/Development/SysAdm/Setup/setup_$INSTALL_MODE.yml
+mkdir -p /home/alexander/Development/SysAdm/
+pacman -S --noconfirm ansible git
+git clone https://github.com/Polynomdivision/ts_application_template.git /home/alexander/Development/SysAdm/System
+ansible-playbook /home/alexander/Development/SysAdm/System/system_$INSTALL_MODE.yml
 
 exit
 EOF
 
-echo "Press 'ENTER' to reboot"
-read
-
-echo "Unmounting..."
-unount -r /mnt
-echo "Rebooting..."
+echo "==============================================="
+echo "\n\n\nWAITING 15 SECONDS BEFORE REBOOTING\n\n\n"
+echo "==============================================="
+sleep 15
+umount -R /mnt
 reboot
