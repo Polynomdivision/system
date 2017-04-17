@@ -38,12 +38,14 @@ echo "ROOT PARTITION: '$ROOT_PART'"
 echo "BOOT PARTITION: '$BOOT_PART'"
 echo "BOOT DRIVE    : '$BOOT_DRIVE'"
 echo "INSTALLING AS : '$INSTALL_MODE'"
+echo 
+echo "After installing 2 packages, a password prompt will appear"
 echo
 confirm
 
 # Update the package database and install pip2, so that we can install passlib
 pacman -Sy
-pacman -S --no-confirm python2-pip
+pacman -S --noconfirm python2-pip
 pip2 install passlib
 
 # Ask for a password and compute the hash
