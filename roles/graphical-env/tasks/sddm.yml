@@ -6,7 +6,7 @@
 
 - name: Installing the SDDM config
   copy:
-    src: '{{ role_path }}/files/sddm/config'
+    src: '{{ role_path }}/files/sddm/sddm.conf'
     dest: '/etc/sddm.conf'
   become: yes
 
