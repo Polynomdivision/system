@@ -1,16 +1,16 @@
 ---
 - name: Docker Service; NeoVim
   block:
-      - name: Clone docker_neovim
-        git:
-            repo: 'https://github.com/Polynomdivision/docker_neovim.git'
-            clone: yes
-            dest: '{{ user_home }}/Development/Docker/docker_neovim'
-      - name: Build the container
-        command: sh install.sh chdir='{{ user_home }}/Development/Docker/docker_neovim/'
-        become: yes
-      - copy:
-            src: '{{ user_home }}/Development/Docker/docker_neovim/nvim'
-            dest: /usr/local/bin/nvim
-            mode: 0755
+    - name: Clone docker_neovim
+      git:
+        repo: 'https://github.com/Polynomdivision/docker_neovim.git'
+        clone: yes
+        dest: '{{ user_home }}/Development/Docker/docker_neovim'
+    - name: Build the container
+      command: sh install.sh chdir='{{ user_home }}/Development/Docker/docker_neovim/'
+      become: yes
+    - copy:
+        src: '{{ user_home }}/Development/Docker/docker_neovim/nvim'
+        dest: /usr/local/bin/nvim
+        mode: 0755
 

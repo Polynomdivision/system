@@ -1,5 +1,4 @@
 ---
-- include: i3-gaps.yml
 - include: compton.yml
 - include: polybar.yml
 - include: desktop-environment.yml

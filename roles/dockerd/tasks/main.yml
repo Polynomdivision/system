@@ -2,6 +2,7 @@
 - name: Installing docker
   pacman:
     name: docker
+  become: yes
 
 - name: Enabling docker
   systemd:
@@ -9,7 +10,7 @@
     state: started
     name: docker
   become: yes
-
+  ignore_errors: yes
 
 # We use systemd, so it's needed
 - name: Create docker's configuration directory

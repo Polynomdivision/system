@@ -3,6 +3,11 @@
   pacman:
     name: xcb-util-image,xcb-util-wm,xcb-util-xrm
 
+- name: Make sure that polybar is not already cloned
+  file:
+    state: absent
+    path: '{{ user_home }}/Build/polybar'
+
 - name: Clone polybar's source
   git:
     repo: 'https://github.com/jaagr/polybar.git'
@@ -23,7 +28,7 @@
     chdir: '{{ user_home }}/Build/polybar/build'
     target: install
     params:
-        NUM_THREADS: 4
+        NUM_THREADS: 5
   become: yes
 
 - block:
@@ -41,4 +46,4 @@
         state: link
         src: '{{ role_path }}/files/polybar/launch.sh'
         dest: '{{ user_home }}/.config/polybar/launch.sh'
-        mode: 0755
+        mode: 0700
