@@ -1,0 +1,12 @@
+---
+- name: Create a sudo group
+  group:
+    state: present
+    name: sudo
+
+- name: Create a user account
+  user:
+    group: sudo
+    createhome: yes
+    state: present
+    password: '{{ password_hash }}'

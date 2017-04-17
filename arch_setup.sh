@@ -41,11 +41,18 @@ echo "INSTALLING AS : '$INSTALL_MODE'"
 echo
 confirm
 
-alexander_PW=
+# Update the package database and install pip2, so that we can install passlib
+pacman -Sy
+pacman -S --no-confirm python2-pip
+pip2 install passlib
 
-echo -n "alexander's password: "
-read -s alexander_PW
-echo
+# Ask for a password and compute the hash
+HASH=$(python2 -c "from passlib.hash import sha512_crypt; import getpass; pw1 = getpass.getpass(); pw2 = getpass.getpass(); print(sha512_crypt.encrypt(pw1) if (pw1 == pw2) else 'PASSWORDS DONT MATCH')")
+
+if [ "$HASH" = "PASSWORDS DONT MATCH" ]; then
+	echo "ERROR: Passwords don't match"
+	exit 1
+fi
 
 # Mount everything
 mount $ROOT_PART /mnt
@@ -77,17 +84,17 @@ mkinitcpio -p linux
 grub-install $BOOT_DRIVE
 grub-mkconfig -o /boot/grub/grub.cfg
 
-groupadd sudo
-useradd alexander -G sudo
-usermod --password $alexander_PW alexander
-mkdir -p /home/alexander
-chown alexander /home/alexander
-chmod -R 700 /home/alexander
+#groupadd sudo
+#useradd alexander -G sudo
+#usermod --password $alexander_PW alexander
+#mkdir -p /home/alexander
+#chown alexander /home/alexander
+#chmod -R 700 /home/alexander
 
 mkdir -p /home/alexander/Development/SysAdm/
 pacman -S --noconfirm ansible git
 git clone https://github.com/Polynomdivision/system.git /home/alexander/Development/SysAdm/System
-ansible-playbook /home/alexander/Development/SysAdm/System/system_$INSTALL_MODE.yml
+ansible-playbook /home/alexander/Development/SysAdm/System/system_$INSTALL_MODE.yml --extra-vars "hash=$HASH"
 
 exit
 EOF
