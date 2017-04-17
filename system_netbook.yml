@@ -3,7 +3,8 @@
   vars:
     username: 'alexander'
   roles:
-    - { role: netbook, user: '{{ username }}', hostname: 'mikasa', password_hash: '{{ hash }}'}
+    - { role: setup, user: '{{ username }}', hostname: 'mikasa', password_hash: '{{ hash }}' }
+    - { role: netbook, user: '{{ username }}'}
   tasks:
     - block:
       - name: Set the permission bits to 700 (rwx------)

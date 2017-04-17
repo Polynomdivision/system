@@ -1,14 +1,9 @@
 ---
-- include: user.yml
-- include: kernel-sec.yml
-- include: security.yml
 - include: sudo.yml
-- include: folder-structure.yml
 - include: basics.yml
 # We need to have git before oh-my-zsh, since we need to clone the repository 
 - include: git.yml
 - include: zsh.yml
 - include: oh-my-zsh.yml
 
-- include: network.yml
 - include: iptables.yml

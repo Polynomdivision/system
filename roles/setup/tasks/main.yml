@@ -1,0 +1,6 @@
+---
+- include: kernel-sec.yml
+- include: security.yml
+- include: network.yml
+- include: user.yml
+- include: folder-structure.yml
