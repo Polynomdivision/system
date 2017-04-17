@@ -96,7 +96,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 mkdir -p /home/alexander/Development/SysAdm/
 pacman -S --noconfirm ansible git
 git clone https://github.com/Polynomdivision/system.git /home/alexander/Development/SysAdm/System
-ansible-playbook /home/alexander/Development/SysAdm/System/system_$INSTALL_MODE.yml --extra-vars "hash=$HASH"
+ansible-playbook /home/alexander/Development/SysAdm/System/system_$INSTALL_MODE.yml --extra-vars 'hash=$HASH'
 
 exit
 EOF
