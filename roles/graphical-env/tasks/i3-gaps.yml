@@ -1,7 +1,7 @@
 ---
 - name: Install i3-gaps' dependencies
   pacman:
-      name: pango,libev,libxkbcommon-x11,xcb-util-cursor,xcb-util-keysyms,xcb-util-wm,xcb-util-xrm,yajl
+      name: pango,libev,libxkbcommon-x11,xcb-util-cursor,xcb-util-keysyms,xcb-util-wm,xcb-util-xrm,yajl,startup-notification
 
 - name: Clone i3-gaps
   git:
