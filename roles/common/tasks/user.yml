@@ -9,4 +9,5 @@
     group: sudo
     createhome: yes
     state: present
+    name: '{{ user }}'
     password: '{{ password_hash }}'
