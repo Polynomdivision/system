@@ -39,17 +39,11 @@ echo "BOOT PARTITION: '$BOOT_PART'"
 echo "BOOT DRIVE    : '$BOOT_DRIVE'"
 echo "INSTALLING AS : '$INSTALL_MODE'"
 echo 
-echo "After installing 2 packages, a password prompt will appear"
-echo
 confirm
 
-# Update the package database and install pip2, so that we can install passlib
-pacman -Sy
-pacman -S --noconfirm python2-pip
-pip2 install passlib
-
 # Ask for a password and compute the hash
-HASH=$(python2 -c "from passlib.hash import sha512_crypt; import getpass; pw1 = getpass.getpass(); pw2 = getpass.getpass(); print(sha512_crypt.encrypt(pw1) if (pw1 == pw2) else 'PASSWORDS DONT MATCH')")
+echo "Enter a password for alexander"
+HASH=$(python2 -c 'import crypt,uuid,getpass; pw1 = getpass.getpass(); pw2 = getpass.getpass(prompt="Re-enter password: "); print(crypt.crypt(pw1, "$6$%s$" % uuid.uuid4().hex) if pw1 == pw2 else "PASSWORDS DONT MATCH")')
 
 if [ "$HASH" = "PASSWORDS DONT MATCH" ]; then
 	echo "ERROR: Passwords don't match"
