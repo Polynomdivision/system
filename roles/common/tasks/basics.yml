@@ -26,7 +26,7 @@
 
 - name: Install package managers
   pacman:
-    name: npm,python-pip
+    name: npm,python-pip,python2-pip
   become: yes
 
 - name: Install a terminal multiplexer (tmux)
