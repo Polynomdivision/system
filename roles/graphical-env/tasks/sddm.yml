@@ -13,5 +13,5 @@
 - name: Enabling SDDM
   systemd:
     enabled: yes
-    state: started
+    state: stopped
   become: yes
