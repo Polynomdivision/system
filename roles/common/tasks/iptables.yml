@@ -2,6 +2,7 @@
 - name: Installing the iptable tools
   pacman:
     name: iptables
+  become: yes
 
 - block:
     - name: Applying iptable rules
@@ -30,8 +31,9 @@
     - name: Saving the iptable rules
       shell: iptables-save > /etc/iptables/iptables.rules
       become: yes
-    - name: Starting and enabling the iptables service
-      systemd:
-        state: started
-        enabled: yes
-        name: iptables
+#    - name: Starting and enabling the iptables service
+#      systemd:
+#        state: started
+#        enabled: yes
+#        name: iptables
+#      become: yes
