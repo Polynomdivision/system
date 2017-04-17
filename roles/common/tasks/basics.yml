@@ -1,35 +1,35 @@
 ---
-- name: Install curl
+- name: Installing network utilities
   pacman:
-    name: curl
+    name: curl,wget
   become: yes
 
-- name: Install buildtools
+- name: Installing buildtools
   pacman:
     name: cmake,make,autoconf
   become: yes
 
-- name: Install GNU utils
+- name: Installing GNU utils
   pacman:
     name: sed
   become: yes
 
-- name: Install compiler
+- name: Installing compiler
   pacman:
     name: clang
   become: yes
 
-- name: Install languages
+- name: Installing languages
   pacman:
     name: python2,python,nodejs
   become: yes
 
-- name: Install package managers
+- name: Installing package managers
   pacman:
     name: npm,python-pip,python2-pip
   become: yes
 
-- name: Install a terminal multiplexer (tmux)
+- name: Installing a terminal multiplexer (tmux)
   pacman:
     name: tmux
   become: yes
