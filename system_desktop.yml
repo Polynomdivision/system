@@ -1,4 +1,12 @@
 - hosts: 127.0.0.1
   connection: local
+  vars:
+    username: 'alexander'
   roles:
-    - { role: desktop, user: 'alexander', hostname: 'miku', password_hash: '{{ hash }}'}
+    - { role: desktop, user: '{{ username }}', hostname: 'miku', password_hash: '{{ hash }}'}
+  tasks:
+    - block:
+      - name: Set the permission bits to 700 (rwx------)
+        command: chmod -R 700 '{{ username }}'
+      - name: Set the owner of the home directory to the user
+        command: chown -R '{{ username }}' '/home/{{ username }}'
