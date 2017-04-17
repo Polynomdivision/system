@@ -70,7 +70,6 @@ echo "de_DE.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
 echo "LANG=de_DE.UTF-8" > /etc/locale.conf
 echo "KEYMAP=de-latin1" > /etc/vconsole.conf
-localectl set-x11-keymap de
 
 pacman-key --init
 pacman-key --populate
@@ -79,13 +78,6 @@ pacman -S --noconfirm grub os-prober intel-ucode vim
 mkinitcpio -p linux
 grub-install $BOOT_DRIVE
 grub-mkconfig -o /boot/grub/grub.cfg
-
-#groupadd sudo
-#useradd alexander -G sudo
-#usermod --password $alexander_PW alexander
-#mkdir -p /home/alexander
-#chown alexander /home/alexander
-#chmod -R 700 /home/alexander
 
 mkdir -p /home/alexander/Development/SysAdm/
 pacman -S --noconfirm ansible git
