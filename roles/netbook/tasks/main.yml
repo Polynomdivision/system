@@ -1,8 +1,16 @@
 ---
-- name: Install network tools (nmap, ...)
+- name: Installing network tools (nmap, ...)
   pacman:
     name: nmap
   become: yes
 
 - include: term.yml
 - include: neovim.yml
+
+- block:
+  - name: Installing the brightness script
+    copy:
+      src: '{{ role_path }}/files/scripts/bright'
+      dest: /usr/local/bin/bright
+      mode: 0755
+    become: yes
