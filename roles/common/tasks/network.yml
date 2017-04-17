@@ -1,7 +1,7 @@
 ---
 - name: Setting the hostname
-  hostname:
-    name: '{{ hostname }}'
+  shell: echo '{{ hostname }}' > /etc/hostname
+  become: yes
 
 - name: Adding the hostname to /etc/hosts
   shell: echo '127.0.0.1        local.{{ hostname }} {{ hostname }}' >> /etc/hosts
