@@ -1,4 +1,28 @@
 ---
-- name: Install oh-my-zsh
-  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Polynomdivision/oh-my-zsh/polynom/tools/install.sh)"
+- name: Checking if oh-my-zsh is already installed
+  stat:
+    path: '{{ user_home }}/.oh-my-zsh'
+  register: ohmyzsh_stat
 
+- block:
+  - name: Cloning oh-my-zsh
+    git:
+      clone: yes
+      repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
+      depth: 1
+      dest: '{{ user_home }}/.oh-my-zsh'
+  - name: Changing the user shell
+    command: chsh -s /usr/bin/zsh '{{ user }}'
+  when: ohmyzsh_stat.exists == false
+
+- block:
+  - name: Applying the zshrc
+    file:
+      state: link
+      src: '{{ role_path }}/files/zsh/zshrc'
+      dest: '{{ user_home }}/.zshrc'
+  - name: Applying the bashrc
+    file:
+      state: link
+      src: '{{ role_path }}/files/zsh/bashrc'
+      dest: '{{ user_home }}/.bashrc'
