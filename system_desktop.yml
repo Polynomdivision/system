@@ -8,6 +8,6 @@
   tasks:
     - block:
       - name: Set the permission bits to 700 (rwx------)
-        command: chmod -R 700 '{{ username }}'
+        command: chmod -R 700 '/home/{{ username }}'
       - name: Set the owner of the home directory to the user
         command: chown -R '{{ username }}' '/home/{{ username }}'
