@@ -1,0 +1,13 @@
+---
+- name: Creating the local font directory
+  file:
+    state: directory
+    path: '{{ user_home }}/.local/share/fonts'
+
+- name: Installing Hack-Regular
+  command: wget https://github.com/chrissimpkins/codeface/raw/master/fonts/hack/Hack-Regular.ttf -P '{{ user_home }}/.local/share/fonts/'
+  ignore_errors: yes
+
+- name: Updating the font cache
+  command: fc-cache
+
