@@ -4,4 +4,5 @@
     name: nmap
   become: yes
 
+- include: term.yml
 - include: neovim.yml
