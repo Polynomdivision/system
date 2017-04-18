@@ -1,0 +1,16 @@
+---
+- name: Installing nvidia-dkms
+  pacman:
+    name: nvidia-dkms
+  become: yes
+  ignore_errors: yes
+ 
+- name: Installing a browser (chromium)
+  pacman:
+    name: chromium
+  become: yes
+
+- name: Installing a music player (cmus)
+  pacman:
+    name: cmus
+  become: yes
