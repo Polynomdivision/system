@@ -1,4 +1,13 @@
 ---
+- name: Installing the Access Control Lists
+  pacman:
+    name: acl
+  become: yes
+
+- name: Setting the ACL for the home directory
+  command: setfacl -R -m d:u::rwx '{{ user_home }}'
+  become: yes
+
 - name: Create the Development folder
   file:
     state: directory
