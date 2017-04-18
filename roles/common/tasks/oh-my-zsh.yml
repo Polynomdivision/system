@@ -13,7 +13,7 @@
       dest: '{{ user_home }}/.oh-my-zsh'
   - name: Changing the user shell
     command: chsh -s /usr/bin/zsh '{{ user }}'
-  when: ohmyzsh_stat.exists == false
+  when: ohmyzsh_stat['stat']['exists'] == false
 
 - block:
   - name: Applying the zshrc
