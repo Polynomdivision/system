@@ -6,6 +6,7 @@
 
 - include: term.yml
 - include: neovim.yml
+- include: multimedia.yml
 
 - block:
   - name: Installing the brightness script

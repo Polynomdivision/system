@@ -1,0 +1,5 @@
+---
+- name: Installing a browser (firefox)
+  pacman:
+    name: firefox
+  become: yes
