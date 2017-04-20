@@ -12,6 +12,13 @@
     name: networkmanager
   become: yes
 
+- name: Enabling NetworkManager
+  systemd:
+    state: stopped
+    enabled: yes
+    name: NetworkManager
+  become: yes
+
 - name: Disabling ipv6
   copy:
     src: '{{ role_path }}/files/kernel/50-network.conf'
