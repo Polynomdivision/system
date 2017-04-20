@@ -4,6 +4,11 @@
     name: nmap
   become: yes
 
+- name: Installing i3lock
+  pacman: 
+    name: i3lock
+  become: yes
+
 - include: term.yml
 - include: neovim.yml
 - include: multimedia.yml
@@ -13,5 +18,11 @@
     copy:
       src: '{{ role_path }}/files/scripts/bright'
       dest: /usr/local/bin/bright
+      mode: 0755
+    become: yes
+  - name: Installing the lock script (Workaround for the zsh suspend)
+    copy:
+      src: '{{ role_path }}/file/scripts/lock'
+      dest: /usr/local/bin/lock
       mode: 0755
     become: yes

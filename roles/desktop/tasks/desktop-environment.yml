@@ -12,3 +12,41 @@
   with_items:
     - lxqt.conf
     - sessions.conf
+
+- block:
+  - name: Installing i3lock-color's dependencies
+    pacman:
+      name: cairo,libev,libx11,pam,xcb-util-image,xcb-util-keysyms,libxkbcommon-x11
+    become: yes
+  - name: Cloning i3lock-color
+    git:
+      clone: yes
+      repo: 'git@github.com:chrjguill/i3lock-color.git'
+      dest: '{{ user_home }}/Build/i3lock-color'
+  - name: Building i3lock-color
+    make:
+      chdir: '{{ user_home }}/Build/i3lock-color'
+      params:
+        NUM_THREADS: 4
+  - name: Installing i3lock-color
+    make:
+      chdir: '{{ user_home }}/Build/i3lock-color'
+      target: install
+    become: yes
+
+- block:
+  - name: Installing i3lock-fancy's dependencies
+    pacman:
+      name: imagemagick,awk,maim
+    become: yes
+  - name: Cloning i3lock-fancy
+    git:
+      clone: yes
+      repo: 'https://github.com/meskarune/i3lock-fancy.git'
+      dest: '{{ user_home }}/Build/i3lock-fancy'
+  - name: Installing i3lock-fancy's script
+    copy:
+      src: '{{ user_home }}/Build/i3lock-fancy/lock'
+      dest: /usr/local/bin/lock
+      mode: 0755
+    become: yes
