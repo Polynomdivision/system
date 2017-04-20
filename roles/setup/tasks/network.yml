@@ -18,6 +18,7 @@
     enabled: yes
     name: NetworkManager
   become: yes
+  ignore_errors: yes
 
 - name: Disabling ipv6
   copy:
