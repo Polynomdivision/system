@@ -35,3 +35,5 @@ alias gstatus="git status"
 
 alias nvim="sudo USERID=$(id -u) /usr/local/bin/nvim"
 alias vscode="sudo USERID=$(id -u) /usr/local/bin/docker_vscode"
+
+alias suspend="lock &; sleep 2; systemctl suspend && $HOME/.fehbg"
