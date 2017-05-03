@@ -1,0 +1,6 @@
+---
+- name: Installing the DKMS nVidia driver
+  pacman:
+    name: nvidia-dkms
+  become: yes
+  ignore_errors: yes
