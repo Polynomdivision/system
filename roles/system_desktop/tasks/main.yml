@@ -4,4 +4,3 @@
 - include: desktop-environment.yml
 - include: konsole.yml
 - include: docker.yml 
-- include: multimedia.yml
