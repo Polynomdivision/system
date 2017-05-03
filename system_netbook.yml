@@ -4,7 +4,7 @@
     username: 'alexander'
   roles:
     - { role: setup, user: '{{ username }}', hostname: 'mikasa', password_hash: '{{ hash }}' }
-    - { role: netbook, user: '{{ username }}'}
+    - { role: system_netbook, user: '{{ username }}'}
   tasks:
     - block:
       - name: Set the owner of the home directory to the user
