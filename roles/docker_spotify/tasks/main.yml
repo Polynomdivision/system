@@ -1,0 +1,17 @@
+---
+- name: [docker_spotify] Cloning docker_spotify
+  git:
+    repo: 'https://github.com/Polynomdivision/docker_spotify.git'
+    clone: yes
+    dest: '{{ user_home }}/Development/Docker/spotify'
+
+- name: [docker_spotify] Building the container
+  command: sh install.sh chdir='{{ user_home }}/Development/Docker/spotify/'
+  become: yes
+
+- name: [docker_spotify] Installing the desktop file
+  copy:
+    src: '{{ user_home }}/Development/Docker/spotify/scripts/docker_spotify.desktop'
+    dest: /usr/share/applications/docker_spotify.desktop
+    mode: 0755
+
