@@ -5,3 +5,4 @@ dependencies:
   - { role: pkgs_gui }
   - { role: pkgs_multimedia }
   - { role: pkgs_dockerd }
+  - { role: docker_neovim }
