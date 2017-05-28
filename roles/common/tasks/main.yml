@@ -1,6 +1,7 @@
 ---
 - include: sudo.yml
 - include: basics.yml
+- include: systemd.yml
 # We need to have git before oh-my-zsh, since we need to clone the repository 
 - include: git.yml
 - include: zsh.yml

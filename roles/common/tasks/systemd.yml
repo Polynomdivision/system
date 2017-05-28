@@ -1,0 +1,5 @@
+---
+- name: [systemd] Create a folder for user services
+  file:
+    state: directory
+    path: '{{ user_home }}/.config/systemd/user/'
