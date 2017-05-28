@@ -38,3 +38,8 @@
   pacman:
     name: gnupg,openssh
   become: yes
+
+- name: Installing packages to encrypt partitions using LUKS
+  pacman:
+    name: cryptsetup
+  become: yes
