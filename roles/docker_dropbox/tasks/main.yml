@@ -1,0 +1,23 @@
+---
+- name: [docker_dropbox] Cloning docker_dropbox
+  git:
+    repo: 'https://github.com/Polynomdivision/docker_dropbox.git'
+    clone: yes
+    dest: '{{ user_home }}/Development/Docker/dropbox'
+
+- name: [docker_dropbox] Building the container
+  command: sh install.sh chdir='{{ user_home }}/Development/Docker/dropbox/'
+  become: yes
+
+- name: [docker_dropbox] Copying the user service to ~/.config/systemd/user/
+  copy:
+    src: '{{ user_home }}/Development/Docker/dropbox/docker_dropbox.service'
+    dest: '{{ user_home }}/.config/systemd/user/docker_dropbox.service'
+
+- name: [docker_dropbox] User-enabling the dropbox service
+  systemd:
+    name: docker_dropbox
+    enabled: yes
+    daemon_reload: yes
+    user: yes
+  become: '{{ user }}'
