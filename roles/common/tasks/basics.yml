@@ -33,3 +33,8 @@
   pacman:
     name: tmux
   become: yes
+
+- name: Installing security tools (gpg, openssh)
+  pacman:
+    name: gnupg,openssh
+  become: yes
