@@ -1,16 +1,16 @@
 ---
-- name: Install urxvt
+- name: <netbook/term> Install urxvt
   pacman:
     name: rxvt-unicode
   become: yes
 
-- name: Change the i3 terminal to urxvt
+- name: <netbook/term> Change the i3 terminal to urxvt
   replace:
     path: '{{ user_home }}/.config/i3/config'
     regexp: 'bindsym\s\$mod\+Return\sexec$'
     replace: 'bindsym $mod+Return exec urxvt'
 
-- name: Configure the look the terminal
+- name: <netbook/term> Configure the look the terminal
   file:
     state: link
     src: '{{ role_path }}/files/urxvt/Xresources'

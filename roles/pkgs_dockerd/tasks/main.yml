@@ -1,10 +1,10 @@
 ---
-- name: Installing docker
+- name: <pkgs_dockerd> Installing docker
   pacman:
     name: docker
   become: yes
 
-- name: Enabling docker
+- name: <pkgs_dockerd> Enabling docker
   systemd:
     enabled: yes
     state: started
@@ -13,12 +13,12 @@
   ignore_errors: yes
 
 # We use systemd, so it's needed
-- name: Create docker's configuration directory
+- name: <pkgs_dockerd> Create docker's configuration directory
   file:
     state: directory
     path: /usr/systemd/system/docker.service.d
 
-- name: Install custom daemon settings
+- name: <pkgs_dockerd> Install custom daemon settings
   copy:
     src: '{{ role_path }}/files/no_icc.conf'
     dest: /usr/systemd/system/docker.service.d/no_icc.conf

@@ -1,10 +1,10 @@
 ---
-- name: Creating the local font directory
+- name: <fonts> Creating the local font directory
   file:
     state: directory
     path: '{{ user_home }}/.local/share/fonts'
 
-- name: Installing Hack-Regular
+- name: <fonts> Installing Hack-Regular
   get_url:
     url: 'https://github.com/chrissimpkins/codeface/raw/master/fonts/hack/Hack-Regular.ttf'
     dest: '{{ user_home }}/.local/share/fonts/hack-regular.ttf'
@@ -13,23 +13,23 @@
   ignore_errors: yes
 
 - block:
-  - name: Creating the Iosevka directory
+  - name: <fonts> Creating the Iosevka directory
     file:
       state: directory
       path: '{{ user_home }}/.local/share/fonts/iosevka/'
-  - name: Downloading Iosevka
+  - name: <fonts> Downloading Iosevka
     get_url:
       url: 'https://github.com/be5invis/Iosevka/releases/download/v1.12.5/01-iosevka-1.12.5.zip'
       dest: '{{ user_home }}/.local/share/fonts/iosevka/iosevka.zip'
-  - name: Unzipping Iosevka
+  - name: <fonts> Unzipping Iosevka
     command: unzip iosevka.zip
     args:
       chdir: '{{ user_home }}/.local/share/fonts/iosevka/'
-  - name: Removing the Iosevka-Zip
+  - name: <fonts> Removing the Iosevka-Zip
     file:
       state: absent
       path: '{{ user_home }}/.local/share/fonts/iosevka/iosevka.zip'
 
-- name: Updating the font cache
+- name: <fonts> Updating the font cache
   command: fc-cache
 

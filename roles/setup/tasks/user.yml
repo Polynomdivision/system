@@ -1,10 +1,10 @@
 ---
-- name: Create a sudo group
+- name: <setup/user> Create a sudo group
   group:
     state: present
     name: sudo
 
-- name: Create a user account
+- name: <setup/user> Create a user account
   user:
     group: sudo
     createhome: yes

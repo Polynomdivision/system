@@ -1,11 +1,11 @@
 ---
-- name: Installing the iptable tools
+- name: <iptables> Installing the iptable tools
   pacman:
     name: iptables
   become: yes
 
 - block:
-    - name: Applying iptable rules
+    - name: <iptables> Applying iptable rules
       iptables:
         chain: INPUT
         policy: DROP
@@ -28,10 +28,10 @@
 
 # systemd only!
 - block:
-    - name: Saving the iptable rules
+    - name: <iptables> Saving the iptable rules
       shell: iptables-save > /etc/iptables/iptables.rules
       become: yes
-    - name: Starting and enabling the iptables service
+    - name: <iptables> Starting and enabling the iptables service
       systemd:
         state: started
         enabled: yes

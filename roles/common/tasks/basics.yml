@@ -1,45 +1,45 @@
 ---
-- name: Installing network utilities
+- name: <basics> Installing network utilities
   pacman:
     name: curl,wget
   become: yes
 
-- name: Installing buildtools
+- name: <basics> Installing buildtools
   pacman:
     name: cmake,make,autoconf
   become: yes
 
-- name: Installing GNU utils
+- name: <basics> Installing GNU utils
   pacman:
     name: sed
   become: yes
 
-- name: Installing compiler
+- name: <basics> Installing compiler
   pacman:
     name: clang
   become: yes
 
-- name: Installing languages
+- name: <basics> Installing languages
   pacman:
     name: python2,python,nodejs
   become: yes
 
-- name: Installing package managers
+- name: <basics> Installing package managers
   pacman:
     name: npm,python-pip,python2-pip
   become: yes
 
-- name: Installing a terminal multiplexer (tmux)
+- name: <basics> Installing a terminal multiplexer (tmux)
   pacman:
     name: tmux
   become: yes
 
-- name: Installing security tools (gpg, openssh)
+- name: <basics> Installing security tools (gpg, openssh)
   pacman:
     name: gnupg,openssh
   become: yes
 
-- name: Installing packages to encrypt partitions using LUKS
+- name: <basics> Installing packages to encrypt partitions using LUKS
   pacman:
     name: cryptsetup
   become: yes

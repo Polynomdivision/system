@@ -1,11 +1,11 @@
 ---
-- name: Installing Konsole
+- name: <desktop/konsole> Installing Konsole
   pacman:
     name: konsole
   become: yes
 
 - block:
-    - name: Installing profiles and color schemes
+    - name: <desktop/konsole> Installing profiles and color schemes
       file:
           state: link
           src: '{{ role_path }}/files/konsole/{{ item }}'

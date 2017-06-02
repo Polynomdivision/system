@@ -1,14 +1,14 @@
 ---
-- name: Install polybar's dependencies
+- name: <desktop/polybar> Install polybar's dependencies
   pacman:
     name: xcb-util-image,xcb-util-wm,xcb-util-xrm
 
-- name: Make sure that polybar is not already cloned
+- name: <desktop/polybar> Make sure that polybar is not already cloned
   file:
     state: absent
     path: '{{ user_home }}/Build/polybar'
 
-- name: Clone polybar's source
+- name: <desktop/polybar> Clone polybar's source
   git:
     repo: 'https://github.com/jaagr/polybar.git'
     clone: yes
@@ -16,14 +16,14 @@
     dest: '{{ user_home }}/Build/polybar'
 
 - block:
-    - name: Create build directory
+    - name: <desktop/polybar> Create build directory
       file:
         path: '{{ user_home }}/Build/polybar/build'
         state: directory
-    - name: Generate the makefile
+    - name: <desktop/polybar> Generate the makefile
       command: cmake .. chdir='{{ user_home }}/Build/polybar/build'
 
-- name: Build polybar
+- name: <desktop/polybar> Build polybar
   make:
     chdir: '{{ user_home }}/Build/polybar/build'
     target: install
@@ -32,16 +32,16 @@
   become: yes
 
 - block:
-    - name: Creating polybar's config directory
+    - name: <desktop/polybar> Creating polybar's config directory
       file:
         state: directory
         path: '{{ user_home }}/.config/polybar'
-    - name: Installing the polybar config
+    - name: <desktop/polybar> Installing the polybar config
       file:
         state: link
         src: '{{ role_path }}/files/polybar/config'
         dest: '{{ user_home }}/.config/polybar/config'
-    - name: Installing the launch wrapper
+    - name: <desktop/polybar> Installing the launch wrapper
       file:
         state: link
         src: '{{ role_path }}/files/polybar/launch.sh'

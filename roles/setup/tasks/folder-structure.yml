@@ -1,24 +1,24 @@
 ---
-- name: Installing the Access Control Lists
+- name: <setup/folder-structure> Installing the Access Control Lists
   pacman:
     name: acl
   become: yes
 
-- name: Setting the ACL for the home directory
+- name: <setup/folder-structure> Setting the ACL for the home directory
   command: setfacl -R -m d:u::rwx '{{ user_home }}'
   become: yes
 
-- name: Create the Development folder
+- name: <setup/folder-structure> Create the Development folder
   file:
     state: directory
     path: '{{ user_home }}/Development'
 
-- name: Development/Docker
+- name: <setup/folder-structure> Development/Docker
   file:
     state: directory
     path: '{{ user_home }}/Development/Docker'
 
-- name: Create the Build folder
+- name: <setup/folder-structure> Create the Build folder
   file:
     state: directory
     path: '{{ user_home  }}/Build'

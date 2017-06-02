@@ -1,9 +1,9 @@
 ---
-- name: Install zsh
+- name: <zsh> Install zsh
   pacman:
     name: zsh
 
-- name: Install the configuration of zsh (and bash)
+- name: <zsh> Install the configuration of zsh (and bash)
   file:
     state: link
     force: yes

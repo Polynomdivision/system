@@ -1,9 +1,9 @@
 ---
 - block:
-  - name: Installing a browser (chromium)
+  - name: <pkgs_multimedia> Installing a browser (chromium)
     pacman:
       name: chromium
-  - name: Installing a music player (cmus)
+  - name: <pkgs_multimedia> Installing a music player (cmus)
     pacman:
       name: cmus
   become: yes

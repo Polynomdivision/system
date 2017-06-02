@@ -1,9 +1,9 @@
 ---
-- name: Install git
+- name: <git> Install git
   pacman:
     name: git
 
-- name: Configure git
+- name: <git> Configure git
   file:
     state: link
     src: '{{ role_path }}/files/git/gitconfig'

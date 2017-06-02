@@ -1,5 +1,5 @@
 ---
-- name: Install the custom sudo policies
+- name: <sudo> Install the custom sudo policies
   copy:
     src: '{{ role_path }}/files/sudo/sudoers'
     dest: /etc/sudoers

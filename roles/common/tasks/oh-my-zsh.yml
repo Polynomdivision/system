@@ -1,27 +1,27 @@
 ---
-- name: Checking if oh-my-zsh is already installed
+- name: <oh-my-zsh> Checking if oh-my-zsh is already installed
   stat:
     path: '{{ user_home }}/.oh-my-zsh'
   register: ohmyzsh_stat
 
 - block:
-  - name: Cloning oh-my-zsh
+  - name: <oh-my-zsh> Cloning oh-my-zsh
     git:
       clone: yes
       repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
       depth: 1
       dest: '{{ user_home }}/.oh-my-zsh'
-  - name: Changing the user shell
+  - name: <oh-my-zsh> Changing the user shell
     command: chsh -s /usr/bin/zsh '{{ user }}'
   when: ohmyzsh_stat['stat']['exists'] == false
 
 - block:
-  - name: Applying the zshrc
+  - name: <oh-my-zsh> Applying the zshrc
     file:
       state: link
       src: '{{ role_path }}/files/zsh/zshrc'
       dest: '{{ user_home }}/.zshrc'
-  - name: Applying the bashrc
+  - name: <oh-my-zsh> Applying the bashrc
     file:
       state: link
       src: '{{ role_path }}/files/zsh/bashrc'

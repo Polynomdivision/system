@@ -1,16 +1,16 @@
 ---
-- name: Installing SDDM
+- name: <pkgs_gui/sddm> Installing SDDM
   pacman:
     name: sddm
   become: yes
 
-- name: Installing the SDDM config
+- name: <pkgs_gui/sddm> Installing the SDDM config
   copy:
     src: '{{ role_path }}/files/sddm/sddm.conf'
     dest: '/etc/sddm.conf'
   become: yes
 
-- name: Enabling SDDM
+- name: <pkgs_gui/sddm> Enabling SDDM
   systemd:
     enabled: yes
     state: stopped
