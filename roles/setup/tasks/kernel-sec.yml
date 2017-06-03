@@ -6,7 +6,7 @@
     mode: 0644
   become: yes
 
-- name: <setup/kernel-sec> Installing hidepid
-  pacman:
-    name: hidepid
-  become: yes
+  #- name: <setup/kernel-sec> Installing hidepid
+  #pacman:
+  #  name: hidepid
+  #become: yes
