@@ -34,6 +34,7 @@
     - name: <iptables> Starting and enabling the iptables service
       systemd:
         state: started
+        daemon_reload: yes
         enabled: yes
         name: iptables
       become: yes
