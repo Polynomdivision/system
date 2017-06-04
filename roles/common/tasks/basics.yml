@@ -21,7 +21,7 @@
 
 - name: <basics> Installing languages
   pacman:
-    name: python2,python,nodejs
+    name: python2,python,nodejs,go
   become: yes
 
 - name: <basics> Installing package managers
