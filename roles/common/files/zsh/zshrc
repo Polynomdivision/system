@@ -14,8 +14,8 @@ source $ZSH/oh-my-zsh.sh
 # LOCAL BINARIES
 export PATH="$PATH:${HOME}/.bin"
 
-# LOCAL BINARIES: SPECIAL SNOWFLAKES
-export VSCODE_PATH="$HOME/.bin/VSCode"
+# GO
+export GOPATH="$HOME/Development/Go"
 
 # ALIAS
 #   General purpose
