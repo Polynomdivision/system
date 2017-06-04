@@ -2,5 +2,4 @@
 - include: compton.yml
 - include: polybar.yml
 - include: desktop-environment.yml
-- include: konsole.yml
 - include: docker.yml 

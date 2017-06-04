@@ -1,0 +1,16 @@
+---
+- name: Installing termite
+  pacman:
+    name: termite
+  become: yes
+
+- name: Creating the termite configuration directory
+  file:
+    state: directory
+    path: '{{ user_home }}/.config/termite'
+
+- name: Installing the configuration
+  file:
+    state: link
+    src: '{{ role_path }}/files/termite/config'
+    dest: '{{ user_home }}/.config/termite/config'

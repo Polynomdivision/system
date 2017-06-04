@@ -9,7 +9,6 @@
     name: i3lock
   become: yes
 
-- include: term.yml
 - include: neovim.yml
 - include: multimedia.yml
 

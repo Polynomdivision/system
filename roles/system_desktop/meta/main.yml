@@ -5,6 +5,7 @@ dependencies:
   - { role: pkgs_gui }
   - { role: pkgs_multimedia }
   - { role: pkgs_dockerd }
+  - { role: pkgs_terminal }
   - { role: docker_neovim }
   - { role: docker_spotify }
   - { role: docker_dropbox }
