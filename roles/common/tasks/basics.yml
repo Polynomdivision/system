@@ -4,6 +4,11 @@
     name: curl,wget
   become: yes
 
+- name: <basics> Installing archive-related packages
+  pacman:
+    name: unzip,tar,gzip
+  become: yes
+
 - name: <basics> Installing buildtools
   pacman:
     name: cmake,make,autoconf

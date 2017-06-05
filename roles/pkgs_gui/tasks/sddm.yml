@@ -14,6 +14,5 @@
   systemd:
     enabled: yes
     daemon_reload: yes
-    state: stopped
     name: sddm
   become: yes

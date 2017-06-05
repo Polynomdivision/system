@@ -14,7 +14,6 @@
 
 - name: <setup/network> Enabling NetworkManager
   systemd:
-    state: stopped
     enabled: yes
     name: NetworkManager
   become: yes
