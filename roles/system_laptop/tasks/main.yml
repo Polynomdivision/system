@@ -1,3 +1,7 @@
 ---
 - include: compton.yml
 - include: desktop-environment.yml
+
+- name: Installing packages used for pentesting
+  pacman:
+    name: aircrack-ng,metasploit,nmap
