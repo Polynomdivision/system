@@ -24,7 +24,7 @@ BOOT_PART=$2
 BOOT_DRIVE=$3
 INSTALL_MODE=$4
 
-if [ $INSTALL_MODE = "desktop" ] || [ $INSTALL_MODE = "netbook" ]; then
+if [ $INSTALL_MODE = "desktop" ] || [ $INSTALL_MODE = "netbook" ] || [ $INSTALL_MODE = "laptop" ]; then
 	# OK
 	echo "" > /dev/null
 else
