@@ -1,11 +1,11 @@
 ---
-- name: <docker_neovim> Cloning docker_neovim
+- name: Cloning docker_neovim
   git:
     repo: 'https://github.com/Polynomdivision/docker_neovim.git'
     clone: yes
     dest: '{{ user_home }}/Development/Docker/neovim'
 
-- name: <docker_neovim> Building the container
+- name: Building the container
   command: sh install.sh chdir='{{ user_home }}/Development/Docker/neovim/'
   become: yes
 

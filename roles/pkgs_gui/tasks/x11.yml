@@ -1,9 +1,9 @@
 ---
-- name: <pkgs_gui/x11> Install X11 and xinit
+- name: <x11> Install X11 and xinit
   pacman:
     name: xorg-server, xorg-xinit
 
-- name: <pkgs_gui/x11> Set the german keyboard layout
+- name: <x11> Set the german keyboard layout
   command: localectl set-x11-keymap de
   become: yes
   ignore_errors: yes

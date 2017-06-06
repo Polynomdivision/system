@@ -1,10 +1,10 @@
 ---
-- name: <desktop/compton> Install compton
+- name: <compton> Install compton
   pacman:
     name: compton
   become: yes
       
-- name: <desktop/compton> Install the compton configuration
+- name: <compton> Install the compton configuration
   file:
     state: link
     src: '{{ role_path }}/files/compton/compton.conf'

@@ -1,21 +1,21 @@
 ---
-- name: <pkgs_gui/i3-gaps> Install i3-gaps' dependencies
+- name: <i3-gaps> Install i3-gaps' dependencies
   pacman:
     name: pango,libev,libxkbcommon-x11,xcb-util-cursor,xcb-util-keysyms,xcb-util-wm,xcb-util-xrm,yajl,startup-notification
 
-- name: <pkgs_gui/i3-gaps> Make sure that the clone directory does not exist
+- name: <i3-gaps> Make sure that the clone directory does not exist
   file:
     state: absent
     path: '{{ user_home }}/Build/i3-gaps'
 
-- name: <pkgs_gui/i3-gaps> Clone i3-gaps
+- name: <i3-gaps> Clone i3-gaps
   git:
     repo: 'https://github.com/Airblader/i3.git'
     clone: yes
     dest: '{{ user_home }}/Build/i3-gaps'
 
 - block:
-  - name: <pkgs_gui/i3-gaps> Prepare the build
+  - name: <i3-gaps> Prepare the build
     command: autoreconf --force --install chdir='{{ user_home }}/Build/i3-gaps'
   - file:
       state: absent
@@ -23,27 +23,27 @@
   - file:
       state: directory
       path: '{{ user_home }}/Build/i3-gaps/build'
-  - name: <pkgs_gui/i3-gaps> Configure the build
+  - name: <i3-gaps> Configure the build
     command: ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers chdir='{{ user_home }}/Build/i3-gaps/build'
 
-- name: <pkgs_gui/i3-gaps> Build i3-gaps
+- name: <i3-gaps> Build i3-gaps
   make:
     chdir: '{{ user_home }}/Build/i3-gaps/build'
     params:
       NUM_THREADS: 5
 
-- name: <pkgs_gui/i3-gaps> Install i3-gaps
+- name: <i3-gaps> Install i3-gaps
   make:
     chdir: '{{ user_home }}/Build/i3-gaps/build'
     target: install
   become: yes
 
-- name: <pkgs_gui/i3-gaps> Create the i3 config directory
+- name: <i3-gaps> Create the i3 config directory
   file:
     state: directory
     path: '{{ user_home }}/.config/i3'
 
-- name: <pkgs_gui/i3-gaps> Install the i3 config
+- name: <i3-gaps> Install the i3 config
   file:
     state: link
     src: '{{ role_path }}/files/i3/config'

@@ -1,5 +1,5 @@
 ---
-- name: <setup/kernel-sec> Setting secure kernel parameters
+- name: <kernel-sec> Setting secure kernel parameters
   copy:
     src: '{{ role_path }}/files/kernel/51-kernel.conf'
     dest: /etc/sysctl.d/51-kernel.conf

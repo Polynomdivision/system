@@ -1,25 +1,25 @@
 ---
-- name: <setup/network> Setting the hostname
+- name: <network> Setting the hostname
   shell: echo '{{ hostname }}' > /etc/hostname
   become: yes
 
-- name: <setup/network> Adding the hostname to /etc/hosts
+- name: <network> Adding the hostname to /etc/hosts
   shell: echo '127.0.0.1        local.{{ hostname }} {{ hostname }}' >> /etc/hosts
   become: yes
 
-- name: <setup/network> Installing NetworkManager
+- name: <network> Installing NetworkManager
   pacman:
     name: networkmanager
   become: yes
 
-- name: <setup/network> Enabling NetworkManager
+- name: <network> Enabling NetworkManager
   systemd:
     enabled: yes
     name: NetworkManager
   become: yes
   ignore_errors: yes
 
-- name: <setup/network> Disabling ipv6
+- name: <network> Disabling ipv6
   copy:
     src: '{{ role_path }}/files/kernel/50-network.conf'
     dest: /etc/sysctl.d/50-network.conf
