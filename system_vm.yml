@@ -1,0 +1,21 @@
+- hosts: 127.0.0.1
+  connection: local
+  vars:
+    username: 'alexander'
+  roles:
+    - { role: setup, user: '{{ username }}', hostname: 'isla-vm{{ vm_number }}', password_hash: '{{ hash }}' }
+    - { role: system_netbook, user: '{{ username }}'}
+  tasks:
+    - block:
+      - name: Set the owner of the home directory to the user
+        command: chown -R '{{ username }}' '/home/{{ username }}'
+        become: yes
+      - name: Change files marked executable to 700
+        command: find '/home/{{ username }}' -type f -executable -exec chmod 700 {} +
+        become: yes
+      - name: Change files not marked as executable to 600
+        command: find '/home/{{ username }}' -type f -not -executable -exec chmod 600 {} +
+        become: yes
+      - name: Change all directories to 700
+        command: find '/home/{{ username }}' -type d chmod 700 {} +
+        become: yes

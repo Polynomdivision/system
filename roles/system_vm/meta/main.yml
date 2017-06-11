@@ -1,0 +1,7 @@
+---
+dependencies:
+  - { role: common }
+  - { role: pkgs_gui }
+  - { role: pkgs_multimedia }
+  - { role: pkgs_dockerd }
+  - { role: pkgs_terminal }

@@ -24,7 +24,7 @@ BOOT_PART=$2
 BOOT_DRIVE=$3
 INSTALL_MODE=$4
 
-if [ $INSTALL_MODE = "desktop" ] || [ $INSTALL_MODE = "netbook" ] || [ $INSTALL_MODE = "laptop" ]; then
+if [ $INSTALL_MODE = "desktop" ] || [ $INSTALL_MODE = "netbook" ] || [ $INSTALL_MODE = "laptop" ]; || $INSTALL_MODE = "vm" then
 	# OK
 	echo "" > /dev/null
 else
@@ -33,13 +33,24 @@ else
 	exit 1
 fi
 
+VM_HOST_NR=0
+if [ $INSTALL_MODE = "vm" ]; then
+	echo "Enter a number for the VM (Ex. 0 for 'isla-vm0' or 1 for 'isla-vm1')"
+	echo -n "> "
+	read VM_HOST_NR
+fi
+
 echo "=== SUMMARY ==="
 echo "ROOT PARTITION: '$ROOT_PART'"
 echo "BOOT PARTITION: '$BOOT_PART'"
 echo "BOOT DRIVE    : '$BOOT_DRIVE'"
 echo "INSTALLING AS : '$INSTALL_MODE'"
+if [ $INSTALL_MODE = "vm" ]; then
+	echo "VM NUMBER	    : '$VM_HOST_NR'"
+fi
 echo 
 confirm
+
 
 # Ask for a password and compute the hash
 echo "Enter a password for alexander"
@@ -82,7 +93,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 mkdir -p /home/alexander/Development/SysAdm/
 pacman -S --noconfirm ansible git
 git clone https://github.com/Polynomdivision/system.git /home/alexander/Development/SysAdm/System
-ansible-playbook /home/alexander/Development/SysAdm/System/system_$INSTALL_MODE.yml --extra-vars 'hash=$HASH'
+ansible-playbook /home/alexander/Development/SysAdm/System/system_$INSTALL_MODE.yml --extra-vars 'hash=$HASH vm_number=$VM_HOST_NR'
 
 exit
 EOF
