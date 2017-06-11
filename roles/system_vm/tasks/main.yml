@@ -1,0 +1,5 @@
+---
+- name: Installing the Virtualbox guest additions
+  pacman:
+    name: virtualbox-guest-utils
+  become: yes
