@@ -4,6 +4,11 @@
     name: plasma,lxqt
   become: yes
 
+- name: <de> Creating LXQT's configuration directory
+  file:
+    state: directory
+    path: '{{ user_home }}/.config/lxqt'
+
 - name: <de> Installing the LXQT configuration
   copy:
     src: '{{ role_path }}/files/lxqt/{{ item }}'
