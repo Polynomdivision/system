@@ -4,7 +4,7 @@
     username: 'alexander'
   roles:
     - { role: setup, user: '{{ username }}', hostname: 'isla-vm{{ vm_number }}', password_hash: '{{ hash }}' }
-    - { role: system_netbook, user: '{{ username }}'}
+    - { role: system_vm, user: '{{ username }}'}
   tasks:
     - block:
       - name: Set the owner of the home directory to the user
