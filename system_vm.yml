@@ -17,5 +17,5 @@
         command: find '/home/{{ username }}' -type f -not -executable -exec chmod 600 {} +
         become: yes
       - name: Change all directories to 700
-        command: find '/home/{{ username }}' -type d chmod 700 {} +
+        command: find '/home/{{ username }}' -type d -exec chmod 700 {} +
         become: yes
