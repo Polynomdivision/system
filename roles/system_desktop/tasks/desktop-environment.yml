@@ -16,7 +16,7 @@
     force: yes
   with_items:
     - lxqt.conf
-    - sessions.conf
+    - session.conf
 
 - block:
   - name: <de> Installing i3lock-color's dependencies
