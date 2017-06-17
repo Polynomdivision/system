@@ -1,3 +1,4 @@
 ---
 - include: compton.yml
 - include: desktop-environment.yml
+- include: i3lock.yml
