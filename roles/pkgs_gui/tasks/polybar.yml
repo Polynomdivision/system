@@ -21,7 +21,7 @@
         path: '{{ user_home }}/Build/polybar/build'
         state: directory
     - name: <polybar> Generate the makefile
-      command: cmake .. chdir='{{ user_home }}/Build/polybar/build'
+      command: cmake -DCMAKE_C_COMPILER="clang" -DCMAKE_CXX_COMPILER="clang++" .. chdir='{{ user_home }}/Build/polybar/build'
 
 - name: <polybar> Build polybar
   make:

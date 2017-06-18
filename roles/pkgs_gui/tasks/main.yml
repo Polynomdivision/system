@@ -1,5 +1,14 @@
 ---
 - include: x11.yml
 - include: fonts.yml
-- include: i3-gaps.yml
 - include: sddm.yml
+- include: compton.yml
+- include: desktop-environment.yml
+- include: i3-gaps.yml
+- include: i3lock.yml
+- include: polybar.yml
+
+- name: Installing feh
+  pacman:
+    name: feh
+  become: yes
