@@ -12,14 +12,14 @@ gaps outer 3
 set $mod Mod1
 
 # Make the launcher float by default
-for_window [class="URxvt" instance="launcher"] floating enable
+for_window [class="Termite" instance="launcher"] floating enable
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec termite
-bindsym $mod+d exec urxvt -name "launcher" -e sh -c 'IS_LAUNCHER=1 /bin/bash -i -t'
+bindsym $mod+d exec IS_LAUNCHER=1 termite --name=launcher --geometry=400x50 --exec=/bin/bash -i -t
 
 # kill focused window
 bindsym $mod+Shift+q kill

@@ -3,12 +3,6 @@
   pacman:
     name: xorg-server, xorg-xinit
 
-- name: <x11> Installing the Xresources
-  file:
-    src: '{{ role_path }}/files/X11/Xresources'
-    dest: '{{ user_home }}/.Xresources'
-    state: link
-
 - name: <x11> Setting the german keyboard layout
   command: localectl set-x11-keymap de
   become: yes
