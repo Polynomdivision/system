@@ -1,9 +1,15 @@
 ---
-- name: <x11> Install X11 and xinit
+- name: <x11> Installing X11 and xinit
   pacman:
     name: xorg-server, xorg-xinit
 
-- name: <x11> Set the german keyboard layout
+- name: <x11> Installing the Xresources
+  file:
+    src: '{{ role_path }}/files/X11/Xresources'
+    dest: '{{ user_home }}/.Xresources'
+    state: link
+
+- name: <x11> Setting the german keyboard layout
   command: localectl set-x11-keymap de
   become: yes
   ignore_errors: yes

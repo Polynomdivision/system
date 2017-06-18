@@ -17,3 +17,8 @@
   with_items:
     - lxqt.conf
     - session.conf
+
+- name: <de> Installing urxvt to use it as a launcher
+  pacman:
+    name: rxvt-unicode
+  become: yes
