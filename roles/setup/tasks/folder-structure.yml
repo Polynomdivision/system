@@ -4,8 +4,12 @@
     name: acl
   become: yes
 
-- name: <folder-structure> Setting the ACL for the home directory
-  command: setfacl -R -m d:u::rwx '{{ user_home }}'
+- block: 
+  - name: <folder-structure> Setting the ACL for the home directory
+    command: setfacl -Rdm u::7 '{{ user_home }}'
+  - command: setfacl -Rdm g::0 '{{ user_home }}'
+  - command: setfacl -Rdm o::0 '{{ user_home }}'
+  - command: setfacl -Rdm m::0 '{{ user_home }}'
   become: yes
 
 - name: <folder-structure> Create the Development folder
