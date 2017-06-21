@@ -15,6 +15,13 @@
     dest: '{{ user_home }}/.config/lxqt/{{ item }}'
     force: yes
   with_items:
+    - globalkeyshortcuts.conf
+    - lxqt-config.conf
+    - lxqt-powermanagement.conf
+    - lxqt-runner.conf
     - lxqt.conf
+    - notifications.conf
+    - panel.conf
+    - power.conf
     - session.conf
-
+    - windowmanagers.conf
