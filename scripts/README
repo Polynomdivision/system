@@ -1,0 +1,11 @@
+check_files.py
+=====
+- Requirements: pyYaml
+
+check_files will go to all files passed to it and search for 'copy' tasks. If
+one is found, it will check if the file(s) really exist.
+The script needs to be executed from the root of the repository.
+
+Usage:
+check_files.py [--debug] [--ignore-var=] [--print-ignore] files
+
