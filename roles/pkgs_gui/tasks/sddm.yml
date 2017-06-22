@@ -16,3 +16,10 @@
     daemon_reload: yes
     name: sddm
   become: yes
+
+- name: <sddm> Faking a last session
+  template:
+    src: '{{ role_path }}/files/sddm/state.conf'
+    dest: /var/lib/sddm/state.conf
+    mode: 0644
+  become: yes
