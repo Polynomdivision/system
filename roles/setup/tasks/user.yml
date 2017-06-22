@@ -6,7 +6,7 @@
 
 - name: <user> Create a user account
   user:
-    group: sudo
+    groups: sudo,dockerservuser
     createhome: yes
     state: present
     name: '{{ user }}'

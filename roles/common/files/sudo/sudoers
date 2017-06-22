@@ -12,8 +12,8 @@ root ALL=(ALL) ALL
 # Allow members of sudo to execute any command
 %sudo	ALL=(ALL) ALL
 
-# Allow alexander to execute the following files using sudo with no password
-alexander ALL=(ALL) NOPASSWD: /usr/local/bin/nvim, /usr/local/bin/docker_intellij, /usr/local/bin/docker_vscode
+# Allow users in the dockerservuser group to use the following docker services without entering a password
+%dockerservuser ALL=(ALL) NOPASSWD: /usr/local/bin/nvim, /usr/local/bin/docker_intellij, /usr/local/bin/docker_vscode
 
 ## Read drop-in files from /etc/sudoers.d
 ## (the '#' here does not indicate a comment)
