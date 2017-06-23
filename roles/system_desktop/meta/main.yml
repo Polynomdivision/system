@@ -4,5 +4,6 @@ dependencies:
   - { role: driver_nvidia }
   - { role: pkgs_gui }
   - { role: pkgs_multimedia }
+  - { role: pkgs_internet }
   - { role: pkgs_dockerd }
   - { role: pkgs_terminal }

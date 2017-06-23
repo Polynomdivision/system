@@ -1,9 +1,5 @@
 ---
-- block:
-  - name: Installing a browser (chromium)
-    pacman:
-      name: chromium
-  - name: Installing a music player (cmus)
-    pacman:
-      name: cmus
+- name: Installing a music player (cmus)
+  pacman:
+    name: cmus
   become: yes
