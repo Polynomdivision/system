@@ -1,7 +1,7 @@
 ---
 - name: <ssh> Making sure that .ssh/ exists
   file:
-    state: directoy
+    state: directory
     path: '{{ user_home }}/.ssh'
     mode: 0600
 
