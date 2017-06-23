@@ -56,10 +56,10 @@ def main():
 
             for task_key in task.keys():
                 # -> 'name', 'pacman', ...
-                if task_key == "copy":
-                    copy_task = task["copy"]
+                if task_key in ["copy", "template"]:
+                    task_to_check = task[task_key]
                     role_path = os.getcwd() + "/roles/" + f.split("/")[2] 
-                    src = copy_task["src"].replace("{{ role_path }}", role_path)
+                    src = task_to_check["src"].replace("{{ role_path }}", role_path)
 
                     if "{{ item }}" in src:
                         # Check the source
