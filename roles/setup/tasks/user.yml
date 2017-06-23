@@ -1,10 +1,15 @@
 ---
-- name: <user> Create a sudo group
+- name: <user> Creating a sudo group
   group:
     state: present
     name: sudo
 
-- name: <user> Create a user account
+- name: <user> Creating a dockerservuser group
+  group:
+    state: present
+    name: dockerservuser
+
+- name: <user> Creating a user account
   user:
     groups: sudo,dockerservuser
     createhome: yes
