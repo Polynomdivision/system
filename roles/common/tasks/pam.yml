@@ -1,0 +1,6 @@
+---
+- name: <pam> Setting environment variables using pam_env
+  copy:
+    src: '{{ role_path }}/files/pam_env/pam_env.conf'
+    dest: /etc/security/pam_env.conf
+  become: yes

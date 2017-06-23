@@ -1,0 +1,32 @@
+---
+- name: <ssh> Making sure that .ssh/ exists
+  file:
+    state: directoy
+    path: '{{ user_home }}/.ssh'
+    mode: 0600
+
+- name: <ssh> Configuring ssh
+  copy:
+    src: '{{ role_path }}/files/ssh/config'
+    dest: '{{ user_home }}/.ssh/config'
+    mode: 0600
+
+- name: <ssh> Making sure .config/systemd/user/ exists
+  file:
+    state: directory
+    path: '{{ user_home }}/.config/systemd/user/'
+    mode: 0600
+
+- name: <ssh> Installing the ssh-agent service
+  copy:
+    src: '{{ role_path }}/files/ssh/ssh-agent.service'
+    dest: '{{ user_home }}/.config/systemd/user/ssh-agent.service'
+    mode: 0600
+
+- name: <ssh> Enabling the ssh-agent service
+  systemd:
+    daemon_reload: yes
+    name: ssh-agent
+    enabled: yes
+    user: yes
+  become: '{{ username }}'
