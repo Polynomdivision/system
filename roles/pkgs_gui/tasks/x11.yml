@@ -3,7 +3,16 @@
   pacman:
     name: xorg-server, xorg-xinit
 
-- name: <x11> Setting the german keyboard layout
-  command: localectl set-x11-keymap de
+- name: <x11> Making sure that /etc/X11/xorg.conf.d/ exists
+  file:
+    state: directory
+    path: /etc/X11/xorg.conf.d/
   become: yes
-  ignore_errors: yes
+
+- name: <x11> Installing X11 configuration files
+  copy:
+    src: '{{ role_path }}/files/x11/{{ item }}'
+    dest: '/etc/X11/xorg.conf.d/{{ item }}'
+  with_items:
+    - 00-keyboard.conf
+  become: yes
