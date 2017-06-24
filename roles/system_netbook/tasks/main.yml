@@ -1,9 +1,4 @@
 ---
-- name: <netbook> Installing network tools (nmap, ...)
-  pacman:
-    name: nmap
-  become: yes
-
 - name: <netbook> Installing i3lock
   pacman: 
     name: i3lock

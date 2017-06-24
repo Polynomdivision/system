@@ -1,7 +1,7 @@
 ---
 - name: <basics> Installing network utilities
   pacman:
-    name: curl,wget,traceroute,iftop
+    name: curl,wget,traceroute,iftop,nmap
   become: yes
 
 - name: <basics> Installing archive-related packages

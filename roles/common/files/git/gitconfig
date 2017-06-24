@@ -5,3 +5,6 @@
 [core]
 	editor = rvim
 	filemode = false
+
+[transfer]
+	fsckObjects = true
