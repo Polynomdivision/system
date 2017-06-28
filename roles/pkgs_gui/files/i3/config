@@ -1,5 +1,6 @@
 exec compton -b --config ~/.compton.conf
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id dunst
 exec_always --no-startup-id ~/.fehbg
 
 # Disable the borders of the windows

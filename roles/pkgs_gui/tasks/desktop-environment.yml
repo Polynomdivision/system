@@ -25,3 +25,19 @@
     - power.conf
     - session.conf
     - windowmanagers.conf
+
+- name: <de> Installing dunst as a notification server
+  pacman:
+    name: dunst
+  become: yes
+
+- name: <de> Making sure that .config/dunst/ exists
+  file:
+    state: directory
+    path: '{{ user_home }}/.config/dunst/'
+
+- name: <de> Installing dunst configuration
+  file:
+    state: link
+    src: '{{ role_path }}/files/dunst/dunstrc'
+    dest: '{{ user_home }}/.config/dunst/dunstrc'
