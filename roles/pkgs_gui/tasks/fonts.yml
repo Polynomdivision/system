@@ -4,13 +4,15 @@
     state: directory
     path: '{{ user_home }}/.local/share/fonts'
 
-- name: <fonts> Installing Hack-Regular
-  get_url:
-    url: 'https://github.com/chrissimpkins/codeface/raw/master/fonts/hack/Hack-Regular.ttf'
-    dest: '{{ user_home }}/.local/share/fonts/hack-regular.ttf'
-    mode: 0700
-    owner: '{{ username }}'
-  ignore_errors: yes
+- name: <fonts> Installing the Hack font
+  pacman:
+    name: hack-ttf
+  become: yes
+
+- name: <fonts> Installing powerline fonts
+  pacman:
+    name: powerline-fonts
+  become: yes
 
 - block:
   - name: <fonts> Creating the Iosevka directory
