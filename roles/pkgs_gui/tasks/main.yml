@@ -7,7 +7,8 @@
 - include: i3-gaps.yml
 - include: i3lock.yml
 - include: polybar.yml
-
+- include: development.yml
+  
 - name: Installing feh
   pacman:
     name: feh

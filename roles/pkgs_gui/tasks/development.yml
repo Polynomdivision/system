@@ -1,0 +1,12 @@
+---
+- name: <development> Installing emacs
+  pacman:
+    name: emacs
+  become: yes
+
+- name: <development> Cloning spacemacs
+  git:
+    clone: yes
+    repo: "https://github.com/syl20bnr/spacemacs"
+    dest: "{{ user_home }}/.emacs.d"
+    
