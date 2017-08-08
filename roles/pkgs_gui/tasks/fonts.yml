@@ -6,7 +6,12 @@
 
 - name: <fonts> Installing the Hack font
   pacman:
-    name: hack-ttf
+    name: ttf-hack
+  become: yes
+
+- name: <fonts> Installing Source Code Pro
+  pacman:
+    name: adobe-source-code-pro-fonts
   become: yes
 
 - name: <fonts> Installing powerline fonts
