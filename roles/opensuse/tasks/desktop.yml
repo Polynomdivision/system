@@ -55,7 +55,7 @@
 
 - name: desktop -> Faking a last SDDM session
   template:
-    src: '{{ role_path }}/files/desktop/ssdm/state.conf'
+    src: '{{ role_path }}/files/desktop/sddm/state.conf'
     dest: /var/lib/sddm/state.conf
     mode: 0644
   become: yes
