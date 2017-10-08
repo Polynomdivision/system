@@ -5,18 +5,25 @@
 
   pre_tasks:
     - name: Setting the default hostname
-      set_fact: machine_hostname="tenshi"
+      set_fact: machine_hostname='rikka'
     - name: Setting the desktop hostname
-      set_fact: machine_hostname="miku"
+      set_fact: machine_hostname='mitsuha'
       when: system == 'desktop'
     - name: Setting the netbook hostname
-      set_fact: machine_hostname="mikasa"
+      set_fact: machine_hostname='mikasa'
       when: system == 'netbook'
+    - name: Setting the VM hostname
+      set_fact: machine_hostname='isla-vm'
+      when: system == 'vm'
+    - name: Setting the Laptop hostname
+      set_fact: machine_hostname='nishimiya'
+      when: system == 'laptop'
 
   roles:
     - { role: setup, user: '{{ username }}', hostname: '{{ machine_hostname }}', password_hash: '{{ hash }}' }
     - { role: system_desktop, user: '{{ username }}', when: system == 'desktop' }
     - { role: system_netbook, user: '{{ username }}', when: system == 'netbook'}
+    - { role: system_vm, user: '{{ username }}', when: system == 'vm' }
   tasks:
     - block:
       - name: Set the owner of the home directory to the user
