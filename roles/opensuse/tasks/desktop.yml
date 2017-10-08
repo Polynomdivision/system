@@ -17,8 +17,8 @@
     name: xorg-x11
   become: yes
 
-- name: desktop -> Installing X11 Configuration
-  block:
+# Install the configuration of the display server
+- block:
     - file:
         state: directory
         path: '/etc/X11/xorg.conf.d/'
@@ -28,7 +28,7 @@
         dest: '/etc/X11/xorg.conf.d/{{ item }}'
         mode: 0444
       with_items:
-        - 00-keyboard.xonf
+        - 00-keyboard.conf
       become: yes
 
 # Login Manager
@@ -43,11 +43,14 @@
     dest: /etc/sddm.conf
   become: yes
 
+#- name: desktop -> Enabling SDDM
+#  systemd:
+#    enabled: yes
+#    daemon_reload: yes
+#    name: sddm
+#  become: yes
 - name: desktop -> Enabling SDDM
-  systemd:
-    enabled: yes
-    daemon_reload: yes
-    name: sddm
+  command: systemctl enable sddm.service
   become: yes
 
 - name: desktop -> Faking a last SDDM session
@@ -69,8 +72,8 @@
     clone: yes
     dest: '/home/{{ username }}/Build/i3-gaps'
 
-- name: desktop -> Preparing the build of i3-gaps
-  block:
+# Prepare the build of i3-gaps
+- block:
     - command: autoreconf --force --install chdir='/home/{{ username }}/Build/i3-gaps/'
     - file:
         state: absent
@@ -121,4 +124,3 @@
     state: link
     src: '{{ role_path }}/desktop/termite/config'
     dest: '/home/{{ username }}/.config/termite/config'
-

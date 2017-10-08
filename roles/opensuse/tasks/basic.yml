@@ -12,11 +12,11 @@
 
 - name: basic -> Installing basic security tools
   zypper:
-    name: gpg2,firejail,nmap,openssh
+    name: gpg2,nmap,openssh
   become: yes
 
 - name: basic -> Installing network utilities
-  zyppeR:
+  zypper:
     name: curl,traceroute,iftop
   become: yes
 

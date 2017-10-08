@@ -4,10 +4,13 @@
     name: docker,docker-compose
   become: yes
 
+#- name: docker -> Enabling docker
+#  systemd:
+#    enabled: yes
+#    name: docker
+#  become: yes
 - name: docker -> Enabling docker
-  systemd:
-    enabled: yes
-    name: docker
+  command: systemctl enable docker
   become: yes
 
 - name: docker -> Preventing InterContainer Communication
@@ -19,8 +22,11 @@
     - no_icc.conf
   become: yes
 
+#- name: docker -> Starting docker
+#  systemd:
+#    state: started
+#    name: docker
+#  become: yes
 - name: docker -> Starting docker
-  systemd:
-    state: started
-    name: docker
+  command: systemctl start docker
   become: yes
