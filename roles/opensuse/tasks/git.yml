@@ -1,0 +1,6 @@
+---
+- name: git -> Installing user git configuration
+  file:
+    state: link
+    src: '{{ role_path }}/files/git/gitconfig'
+    dest: '/home/{{ username }}/.gitconfig'

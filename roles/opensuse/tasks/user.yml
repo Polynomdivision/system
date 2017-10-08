@@ -1,0 +1,18 @@
+---
+- name: user -> Installing zsh
+  zypper:
+    name: zsh
+  become: yes
+  
+- name: user -> Installing the zshrc
+  file:
+    state: link
+    src: '{{ role_path }}/files/user/zshrc'
+    dest: '/home/{{ username }}/.zshrc'
+
+- name: user -> Installing the bashrc
+  file:
+    state: link
+    src: '{{ role_path }}/files/user/bashrc'
+    dest: '/home/{{ username }}/.bashrc'
+

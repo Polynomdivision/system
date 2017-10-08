@@ -1,0 +1,124 @@
+---
+# Compositing Manager
+- name: desktop -> Installing compton
+  zypper:
+    name: compton
+  become: yes
+
+- name: desktop -> Installing compton configuration
+  file:
+    state: link
+    src: '{{ role_path }}/files/desktop/compton/compton.conf'
+    dest: '/home/{{ username }}/.compton.conf'
+
+# Display Server
+- name: desktop -> Installing X11
+  zypper:
+    name: xorg-x11
+  become: yes
+
+- name: desktop -> Installing X11 Configuration
+  block:
+    - file:
+        state: directory
+        path: '/etc/X11/xorg.conf.d/'
+      become: yes
+    - copy:
+        src: '{{ role_path }}/files/desktop/x11/{{ item }}'
+        dest: '/etc/X11/xorg.conf.d/{{ item }}'
+        mode: 0444
+      with_items:
+        - 00-keyboard.xonf
+      become: yes
+
+# Login Manager
+- name: desktop -> Installing SDDM
+  zypper:
+    name: sddm
+  become: yes
+
+- name: desktop -> Installing the SDDM config
+  copy:
+    src: '{{ role_path }}/files/desktop/sddm/sddm.conf'
+    dest: /etc/sddm.conf
+  become: yes
+
+- name: desktop -> Enabling SDDM
+  systemd:
+    enabled: yes
+    daemon_reload: yes
+    name: sddm
+  become: yes
+
+- name: desktop -> Faking a last SDDM session
+  template:
+    src: '{{ role_path }}/files/desktop/ssdm/state.conf'
+    dest: /var/lib/sddm/state.conf
+    mode: 0644
+  become: yes
+
+# i3-gaps
+- name: desktop -> Installing the i3-gaps dependencies
+  zypper:
+    name: pkg-config,libxcb,xcb-util,libxkbcommon,xcb-util-cursor,xcb-util-wm,xcb-util-keysyms,xcb-util-xrm,libev,yajl,asciidoc,xmlto,pcre,pango,cairo
+  become: yes
+
+- name: desktop -> Cloning i3-gaps
+  git:
+    repo: 'https://github.com/Airblader/i3.git'
+    clone: yes
+    dest: '/home/{{ username }}/Build/i3-gaps'
+
+- name: desktop -> Preparing the build of i3-gaps
+  block:
+    - command: autoreconf --force --install chdir='/home/{{ username }}/Build/i3-gaps/'
+    - file:
+        state: absent
+        path: '/home/{{ username }}/Build/i3-gaps/build/'
+    - file:
+        state: directory
+        path: '/home/{{ username }}/Build/i3-gaps/build/'
+    - command: ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers chdir='/home/{{ username }}/Build/i3-gaps/build/'
+
+- name: desktop -> Building i3-gaps
+  make:
+    chdir: '/home/{{ username }}/Build/i3-gaps/build/'
+    params:
+      NUM_THREADS: 5
+
+- name: desktop -> Installing i3-gaps
+  make:
+    chdir: '/home/{{ username }}/Build/i3-gaps/build/'
+    target: install
+  become: yes
+
+- name: desktop -> Creating the i3-gaps config directory
+  file:
+    state: directory
+    path: '/home/{{ username }}/.config/i3/'
+    mode: 0700
+
+- name: desktop -> Installing the i3-gaps configuration
+  file:
+    state: link
+    src: '{{ role_path }}/files/desktop/i3-gaps/config'
+    dest: '/home/{{ username }}/.config/i3/config'
+
+# Terminal
+- name: desktop -> Installing a terminal
+  zypper:
+    name: termite
+  become: yes
+
+- name: desktop -> Creating the termite config directory
+  file:
+    state: directory
+    path: '/home/{{ username }}/.config/termite/'
+    mode: 0700
+
+- name: desktop -> Installing the termite configuration
+  file:
+    state: link
+    src: '{{ role_path }}/desktop/termite/config'
+    dest: '/home/{{ username }}/.config/termite/config'
+

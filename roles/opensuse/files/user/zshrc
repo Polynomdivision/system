@@ -1,0 +1,39 @@
+# PATH TO oh-my-zsh
+export ZSH=/home/alexander/.oh-my-zsh
+
+# THEME
+ZSH_THEME="avit"
+
+# PLUGINS
+plugins=(git zsh-syntax-highlighting)
+
+# USER CONFIGURATION
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+source $ZSH/oh-my-zsh.sh
+
+# LOCAL BINARIES
+export PATH="$PATH:${HOME}/.bin"
+
+# GO
+export GOPATH="$HOME/Development/Go"
+
+# ALIAS
+#   General purpose
+alias ..="cd .."
+alias ...="cd ../.."
+alias home="cd ${HOME}"
+alias c="clear"
+alias reload="exec $SHELL -l"
+#	Development
+alias dev="cd ${HOME}/Development"
+alias build="cd ${HOME}/Build"
+
+alias gcheckout="git checkout"
+alias gcheckoutb="git checkout -b"
+alias gbranch="git branch"
+alias gstatus="git status"
+
+alias nvim="sudo USERID=$(id -u) /usr/local/bin/nvim"
+alias vscode="sudo USERID=$(id -u) /usr/local/bin/docker_vscode"
+
+alias suspend="lock &; sleep 2; systemctl suspend && $HOME/.fehbg"

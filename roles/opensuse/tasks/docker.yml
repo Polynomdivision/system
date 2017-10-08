@@ -1,0 +1,26 @@
+---
+- name: docker -> Installing docker
+  zypper:
+    name: docker,docker-compose
+  become: yes
+
+- name: docker -> Enabling docker
+  systemd:
+    enabled: yes
+    name: docker
+  become: yes
+
+- name: docker -> Preventing InterContainer Communication
+  copy:
+    src: '{{ role_path }}/files/docker/{{ item }}'
+    dest: '/usr/systemd/system/docker.service.d/{{ item }}'
+    mode: 0744
+  with_items:
+    - no_icc.conf
+  become: yes
+
+- name: docker -> Starting docker
+  systemd:
+    state: started
+    name: docker
+  become: yes

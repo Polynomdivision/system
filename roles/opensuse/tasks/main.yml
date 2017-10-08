@@ -1,0 +1,9 @@
+---
+- include: basic.yml
+- include: security.yml
+- include: git.yml
+- include: user.yml
+- include: desktop.yml
+- include: ssh.yml
+- include: docker.yml
+

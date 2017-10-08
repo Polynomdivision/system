@@ -1,0 +1,7 @@
+---
+- name: security -> Installing the /etc/profile
+  copy:
+    src: '{{ role_path }}/files/security/profile'
+    dest: /etc/profile
+    mode: 0555
+  become: yes

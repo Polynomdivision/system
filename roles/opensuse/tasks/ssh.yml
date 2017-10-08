@@ -1,0 +1,13 @@
+---
+- name: ssh -> Creating the SSH directory
+  file:
+    state: directory
+    path: '/home/{{ username }}/.ssh/'
+    mode: 0700
+
+- name: ssh -> Copying the SSH config
+  copy:
+    src: '{{ role_path }}/files/ssh/config'
+    dest: '/home/{{ username }}/.ssh/config'
+    mode: 0600
+

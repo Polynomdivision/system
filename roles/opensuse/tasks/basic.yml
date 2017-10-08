@@ -1,0 +1,32 @@
+---
+# We just make sure that git is installed
+- name: basic -> Installing development packages
+  zypper:
+    name: clang,nodejs,npm,python3,python3-pip,git
+  become: yes
+
+- name: basic -> Installing build tools
+  zypper:
+    name: make,cmake,autoconf
+  become: yes
+
+- name: basic -> Installing basic security tools
+  zypper:
+    name: gpg2,firejail,nmap,openssh
+  become: yes
+
+- name: basic -> Installing network utilities
+  zyppeR:
+    name: curl,traceroute,iftop
+  become: yes
+
+# Folder structure
+- name: basic -> Ensuring correct folder structure
+  file:
+    state: directory
+    path: '/home/{{ username }}/{{ item }}'
+    mode: 0700
+  with_items:
+    - Build
+    - Development
+

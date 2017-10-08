@@ -1,0 +1,18 @@
+# Ask for the passphrase at first use
+AddKeysToAgent yes
+
+# Make ssh-agent clear, that this key exists
+IdentityFile ~/.ssh/github
+IdentityFile ~/.ssh/bitbucket
+
+# The github-Key is for GitHub only
+Host github
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github
+
+# The bitbucket-Key is for BitBucket only
+Host bitbucket
+    HostName bitbucket.org
+    User git
+    IdentityFile ~/.ssh/bitbucket
