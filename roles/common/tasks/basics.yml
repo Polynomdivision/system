@@ -41,7 +41,7 @@
 
 - name: <basics> Installing security tools (gpg, openssh)
   pacman:
-    name: gnupg,openssh
+    name: gnupg,openssh,firejail
   become: yes
 
 - name: <basics> Installing packages to encrypt partitions using LUKS
