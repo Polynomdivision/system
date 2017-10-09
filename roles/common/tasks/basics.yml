@@ -1,4 +1,17 @@
 ---
+- name: <basics> Installing the mirrorlist
+  copy:
+    src: '{{ role_path }}/files/mirrorlist'
+    dest: /etc/pacman.d/mirrorlist
+    force: yes
+    mode: 0644
+  become: yes
+
+- name: <basics> Updating the package database
+  pacman:
+    update_cache: yes
+  become: yes
+  
 - name: <basics> Installing network utilities
   pacman:
     name: curl,wget,traceroute,iftop,nmap
