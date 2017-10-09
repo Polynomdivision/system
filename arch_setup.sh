@@ -53,6 +53,9 @@ confirm
 
 
 # Ask for a password and compute the hash
+# For some reason, python2 is not installed
+pacman -Sy python2
+
 echo "Enter a password for alexander"
 HASH=$(python2 -c 'import crypt,uuid,getpass; pw1 = getpass.getpass(); pw2 = getpass.getpass(prompt="Re-enter password: "); print(crypt.crypt(pw1, "$6$%s$" % uuid.uuid4().hex) if pw1 == pw2 else "PASSWORDS DONT MATCH")')
 
