@@ -78,13 +78,14 @@ cat << EOF | arch-chroot /mnt
 hwclock --hctosys
 
 echo "de_DE.UTF-8 UTF-8" > /etc/locale.gen
+echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
-echo "LANG=de_DE.UTF-8" > /etc/locale.conf
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 echo "KEYMAP=de-latin1" > /etc/vconsole.conf
 
 pacman-key --init
 pacman-key --populate
-pacman -S --noconfirm grub os-prober intel-ucode vim
+pacman -S --noconfirm grub os-prober intel-ucode vim sudo
 
 mkinitcpio -p linux
 grub-install $BOOT_DRIVE
