@@ -101,10 +101,3 @@ ansible-playbook /home/alexander/Development/SysAdm/System/system_$INSTALL_MODE.
 
 exit
 EOF
-
-echo "==============================================="
-echo -n "\n\n\nWAITING 15 SECONDS BEFORE REBOOTING\n\n\n"
-echo "==============================================="
-sleep 15
-umount -R /mnt
-reboot
