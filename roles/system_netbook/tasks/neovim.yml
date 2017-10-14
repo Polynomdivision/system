@@ -2,9 +2,8 @@
 - name: <neovim> Install neovim
   pacman:
     name: neovim
-  become: yes
 
-- name: <neovim> Create neovim's configuration directory
+- name: <neovim> Create neovim s configuration directory
   file:
     state: directory
     path: '{{ user_home }}/.config/nvim'

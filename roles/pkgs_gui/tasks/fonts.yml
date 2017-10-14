@@ -7,17 +7,14 @@
 - name: <fonts> Installing the Hack font
   pacman:
     name: ttf-hack
-  become: yes
 
 - name: <fonts> Installing Source Code Pro
   pacman:
     name: adobe-source-code-pro-fonts
-  become: yes
 
 - name: <fonts> Installing powerline fonts
   pacman:
     name: powerline-fonts
-  become: yes
 
 - block:
   - name: <fonts> Creating the Iosevka directory

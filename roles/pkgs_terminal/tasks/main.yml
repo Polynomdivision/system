@@ -2,7 +2,6 @@
 - name: Installing termite
   pacman:
     name: termite
-  become: yes
 
 - name: Creating the termite configuration directory
   file:

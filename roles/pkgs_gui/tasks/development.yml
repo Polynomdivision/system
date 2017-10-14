@@ -2,7 +2,6 @@
 - name: <development> Installing emacs
   pacman:
     name: emacs
-  become: yes
 
 - name: <development> Cloning spacemacs
   git:

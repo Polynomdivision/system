@@ -2,7 +2,6 @@
 - name: <compton> Install compton
   pacman:
     name: compton
-  become: yes
       
 - name: <compton> Install the compton configuration
   file:

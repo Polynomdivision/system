@@ -7,7 +7,6 @@
   file:
     state: directory
     path: /etc/X11/xorg.conf.d/
-  become: yes
 
 - name: <x11> Installing X11 configuration files
   copy:
@@ -15,4 +14,3 @@
     dest: '/etc/X11/xorg.conf.d/{{ item }}'
   with_items:
     - 00-keyboard.conf
-  become: yes

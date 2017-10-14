@@ -2,9 +2,7 @@
 - name: Installing a browser applications
   pacman:
     name: chromium,firefox
-  become: yes
 
 - name: Installing a Feedreader
   pacman:
     name: akregator
-  become: yes

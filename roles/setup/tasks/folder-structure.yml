@@ -2,7 +2,6 @@
 - name: <folder-structure> Installing the Access Control Lists
   pacman:
     name: acl
-  become: yes
 
 - block: 
   - name: <folder-structure> Setting the ACL for the home directory
@@ -10,7 +9,6 @@
   - command: setfacl -Rdm g::0 '{{ user_home }}'
   - command: setfacl -Rdm o::0 '{{ user_home }}'
   - command: setfacl -Rdm m::0 '{{ user_home }}'
-  become: yes
 
 - name: <folder-structure> Create the Development folder
   file:

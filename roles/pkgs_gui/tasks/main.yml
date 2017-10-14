@@ -12,4 +12,3 @@
 - name: Installing feh
   pacman:
     name: feh
-  become: yes

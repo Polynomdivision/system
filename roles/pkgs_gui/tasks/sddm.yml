@@ -2,24 +2,20 @@
 - name: <sddm> Installing SDDM
   pacman:
     name: sddm
-  become: yes
 
 - name: <sddm> Installing the SDDM config
   copy:
     src: '{{ role_path }}/files/sddm/sddm.conf'
     dest: '/etc/sddm.conf'
-  become: yes
 
 - name: <sddm> Enabling SDDM
   systemd:
     enabled: yes
     daemon_reload: yes
     name: sddm
-  become: yes
 
 - name: <sddm> Faking a last session
   template:
     src: '{{ role_path }}/files/sddm/state.conf'
     dest: /var/lib/sddm/state.conf
     mode: 0644
-  become: yes

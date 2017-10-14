@@ -1,5 +1,10 @@
 ---
 - name: Installing the Virtualbox guest additions
   pacman:
-    name: virtualbox-guest-utils
-  become: yes
+    name: virtualbox-guest-utils,virtualbox-guest-modules-arch
+
+- name: Enabling the virtualbox service
+  systemd:
+    name: vboxservice.service
+    enabled: yes
+

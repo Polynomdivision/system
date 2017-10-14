@@ -2,17 +2,15 @@
 - name: Installing docker
   pacman:
     name: docker
-  become: yes
 
 - name: Enabling docker
   systemd:
     enabled: yes
     name: docker
-  become: yes
   ignore_errors: yes
 
 # We use systemd, so it's needed
-- name: Create docker's configuration directory
+- name: Create docker s configuration directory
   file:
     state: directory
     path: /usr/systemd/system/docker.service.d

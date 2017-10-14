@@ -2,9 +2,8 @@
 - name: <de> Installing KDE Plasma and LXQT
   pacman:
     name: plasma,lxqt
-  become: yes
 
-- name: <de> Creating LXQT's configuration directory
+- name: <de> Creating LXQT s configuration directory
   file:
     state: directory
     path: '{{ user_home }}/.config/lxqt'
@@ -29,7 +28,6 @@
 - name: <de> Installing dunst as a notification server
   pacman:
     name: dunst
-  become: yes
 
 - name: <de> Making sure that .config/dunst/ exists
   file:

@@ -2,11 +2,8 @@
 - block:
     - name: <security> Disabling root login in /etc/passwd
       command: sed 's/root\:x\:0\:0\:root\:\/root\:.*/root\:x\:0\:0\:root\:\/root\:\/sbin\/nologin/' /etc/passwd
-      become: yes
-
     - name: <security> Disabling root login in /etc/passwd-
       command: sed 's/root\:x\:0\:0\:root\:\/root\:.*/root\:x\:0\:0\:root\:\/root\:\/sbin\/nologin/' /etc/passwd-
-      become: yes
 
 - name: <security> Setting the default umask to 0077
   copy:
@@ -14,4 +11,3 @@
     src: '{{ role_path }}/files/profile'
     dest: /etc/profile
     mode: 0555
-  become: yes

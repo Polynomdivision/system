@@ -2,21 +2,18 @@
 - name: <iptables> Installing the iptable tools
   pacman:
     name: iptables
-  become: yes
 
 - block:
     - name: <iptables> Applying iptable rules
       iptables:
         chain: INPUT
         policy: DROP
-      become: yes
       # Accept packets from connections we initiated
     - iptables:
         chain: INPUT
         action: append
         ctstate: ESTABLISHED
         jump: ACCEPT
-      become: yes
       # Accept packets coming from localhost to localhost
     - iptables:
         chain: INPUT
@@ -24,17 +21,14 @@
         source: 127.0.0.1
         destination: 127.0.0.1
         jump: ACCEPT
-      become: yes
 
 # systemd only!
 - block:
     - name: <iptables> Saving the iptable rules
       shell: iptables-save > /etc/iptables/iptables.rules
-      become: yes
     - name: <iptables> Starting and enabling the iptables service
       systemd:
         daemon_reload: yes
         enabled: yes
         name: iptables
-      become: yes
       ignore_errors: yes
