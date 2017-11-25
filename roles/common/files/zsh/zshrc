@@ -12,10 +12,11 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/u
 source $ZSH/oh-my-zsh.sh
 
 # LOCAL BINARIES
-export PATH="$PATH:${HOME}/.bin"
+export PATH="$PATH:$HOME/.local/bin"
 
-# GO
-export GOPATH="$HOME/Development/Go"
+# LANG
+export LANG="en_GB.UTF-8"
+export LC_ALL="en_GB.UTF-8"
 
 # ALIAS
 #   General purpose
@@ -33,7 +34,8 @@ alias gcheckoutb="git checkout -b"
 alias gbranch="git branch"
 alias gstatus="git status"
 
-alias nvim="sudo USERID=$(id -u) /usr/local/bin/nvim"
-alias vscode="sudo USERID=$(id -u) /usr/local/bin/docker_vscode"
-
-alias suspend="lock &; sleep 2; systemctl suspend && $HOME/.fehbg"
+#	Security
+alias lock="swaylock --image ~/Dropbox/Wallpaper/Anime/__kokonoe_tsubaki_original_drawn_by_haik__778bed06137ac781e471db1521099c41.jpg --scaling fill"
+alias suspend="(lock &) && sleep 1 && systemctl suspend"
+#
+alias tmpsh="sudo docker run -it --rm"
