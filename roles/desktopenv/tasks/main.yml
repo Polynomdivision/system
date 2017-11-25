@@ -1,0 +1,4 @@
+---
+- include: sway.yml
+- include: sddm.yml
+- include: development.yml

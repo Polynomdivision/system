@@ -1,0 +1,14 @@
+---
+- name: Installing SDDM
+  pacman:
+    name: sddm,breeze
+
+- name: Configuring SDDM
+  copy:
+    src: '{{ role_path }}/files/sddm/sddm.conf'
+    dest: /etc/sddm.conf
+
+- name: Enabling SDDM
+  systemd:
+    enabled: yes
+    name: sddm

@@ -1,8 +1,0 @@
----
-- name: Installing a browser applications
-  pacman:
-    name: chromium,firefox
-
-- name: Installing a Feedreader
-  pacman:
-    name: akregator

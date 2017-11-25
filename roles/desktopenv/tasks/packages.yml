@@ -1,0 +1,11 @@
+- name: Installing a webbrowser
+  pacman:
+    name: chromium
+
+- name: Installing a PDF reader
+  pacman:
+    name: okular
+
+- name: Installing a terminal emulator
+  pacman:
+    name: termite

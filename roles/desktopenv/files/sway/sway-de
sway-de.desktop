@@ -1,0 +1,2 @@
+#!/bin/sh
+XKB_DEFAULT_LAYOUT=de sway

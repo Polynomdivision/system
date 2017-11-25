@@ -1,4 +1,0 @@
----
-- name: Installing a music player (cmus)
-  pacman:
-    name: cmus

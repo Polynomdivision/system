@@ -1,5 +1,0 @@
----
-- name: Installing the nVidia driver
-  pacman:
-    name: nvidia
-  ignore_errors: yes

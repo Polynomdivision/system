@@ -1,0 +1,15 @@
+---
+- name: Installing docker
+  pacman:
+    name: docker,docker-compose
+
+- name: Creating the daemons config directory
+  file:
+    state: directory
+    path: /usr/systemd/system/docker.service.d/
+
+- name: Configuring the docker daemon
+  copy:
+    src: '{{ role_path }}/files/no_icc.conf'
+    dest: /usr/systemd/system/docker.service.d/no_icc.conf
+    mode: 0600

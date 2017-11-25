@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Sway-de
+Comment=SirCmpwn\'s Wayland Window Manager with a German keymap
+Exec=sway-de
+Type=Application

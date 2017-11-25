@@ -1,0 +1,15 @@
+---
+- name: Installing sway
+  pacman:
+    name: sway
+
+# Create a starter with a German keymap
+- block:
+    - copy:
+        src: '{{ role_path }}/files/sway/sway-de'
+        dest: /usr/local/bin/sway-de
+        mode: 0555
+    - copy:
+        src: '{{ role_path }}/files/sway/sway-de.desktop'
+        dest: /usr/share/wayland-sessions/sway-de.desktop
+        mode: 0444

@@ -1,0 +1,20 @@
+---
+- name: Seting the hostname
+  shell: echo '{{ hostname }}' > /etc/hostname
+
+- block:
+    - name: Installing NetworkManager
+      pacman:
+        name: networkmanager
+    - name: Enabling NetworkManager
+      systemd:
+        enabled: yes
+        name: NetworkManager
+
+# See https://www.stigviewer.com/stig/oracle_linux_5/2015-06-05/finding/V-4336 for the reason why
+# 0600 is used instead of 0644
+- name: Disabling IPv6
+  copy:
+    src: '{{ role_path }}/files/kernel/50-network.conf'
+    dest: '/etc/sysctl.d/50-network.conf'
+    mode: 0600

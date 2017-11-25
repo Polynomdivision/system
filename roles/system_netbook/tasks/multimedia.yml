@@ -1,4 +1,0 @@
----
-- name: <multimedia> Installing a browser (firefox)
-  pacman:
-    name: firefox

@@ -1,6 +1,0 @@
----
-dependencies:
-  - { role: common }
-  - { role: graphical-env }
-  - { role: pkgs_terminal }
-

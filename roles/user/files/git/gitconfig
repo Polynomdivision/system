@@ -1,0 +1,10 @@
+[user]
+	email = digitalmail555@googlemail.com
+	name = Alexander Polynomdivision
+
+[core]
+	editor = rvim
+	filemode = false
+
+[transfer]
+	fsckObjects = true

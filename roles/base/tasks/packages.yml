@@ -1,0 +1,35 @@
+---
+- name: Setting the pacman mirrorlist
+  copy:
+    src: '{{ role_path }}/files/pacman/mirrorlist'
+    dest: /etc/pacman.d/mirrorlist
+    mode: 0644
+    force: yes
+
+- name: Updating the pacman cache
+  pacman:
+    update_cache: yes
+
+- name: Installing development tools
+  pacman:
+    name: git
+
+- name: Installing build tools
+  pacman:
+    name: cmake,make,autoconf
+
+- name: Installing programming languages and compiler
+  pacman:
+    name: clang,python2,python,nodejs,go,npm,python-pip,python2-pip
+
+- name: Installing basic utils (gzip, ...)
+  pacman:
+    name: unzip,tar,gzip,sed
+
+- name: Installing security tools
+  pacman:
+    name: openssh,gnupg,firejail,cryptsetup
+
+- name: Installing network tools
+  pacman:
+    name: curl,traceroute,iftop,nmap

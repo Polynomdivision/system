@@ -1,0 +1,41 @@
+# PATH TO oh-my-zsh
+export ZSH=/home/alexander/.oh-my-zsh
+
+# THEME
+ZSH_THEME="avit"
+
+# PLUGINS
+plugins=(git zsh-syntax-highlighting)
+
+# USER CONFIGURATION
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+source $ZSH/oh-my-zsh.sh
+
+# LOCAL BINARIES
+export PATH="$PATH:$HOME/.local/bin"
+
+# LANG
+export LANG="en_GB.UTF-8"
+export LC_ALL="en_GB.UTF-8"
+
+# ALIAS
+#   General purpose
+alias ..="cd .."
+alias ...="cd ../.."
+alias home="cd ${HOME}"p
+alias c="clear"
+alias reload="exec $SHELL -l"
+#	Development
+alias dev="cd ${HOME}/Development"
+alias build="cd ${HOME}/Build"
+
+alias gcheckout="git checkout"
+alias gcheckoutb="git checkout -b"
+alias gbranch="git branch"
+alias gstatus="git status"
+
+#	Security
+alias lock="swaylock --image ~/Dropbox/Wallpaper/Anime/__kokonoe_tsubaki_original_drawn_by_haik__778bed06137ac781e471db1521099c41.jpg --scaling fill"
+alias suspend="(lock &) && sleep 1 && systemctl suspend"
+#
+alias tmpsh="sudo docker run -it --rm"

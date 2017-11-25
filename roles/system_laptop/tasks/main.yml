@@ -1,4 +1,0 @@
----
-- name: Installing packages used for pentesting
-  pacman:
-    name: aircrack-ng,metasploit

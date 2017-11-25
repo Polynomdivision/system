@@ -1,0 +1,26 @@
+---
+- name: Setting secure kernel parameters
+  copy:
+    src: '{{ role_path }}/files/kernel/51-kernel.conf'
+    dest: /etc/sysctl.d/51-kernel.conf
+    mode: 0600
+
+- block:
+    - name: Locking the root account
+      command: usermod --lock root
+    - name: Changing roots login shell to nologin
+      command: chsh -s /sbin/nologin root
+
+- name: Setting the umask to 0077
+  copy:
+    # Replace it if it exists. I don't give a fuck
+    force: yes
+    src: '{{ role_path }}/files/profile'
+    dest: /etc/profile
+    mode: 0555
+
+- name: Applying another sudoers file
+  copy:
+    src: '{{ role_path }}/files/sudo/sudoers'
+    dest: /etc/sudoers
+    mode: 0400
