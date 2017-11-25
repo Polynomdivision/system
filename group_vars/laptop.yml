@@ -1,3 +1,4 @@
 ---
 hostname: 'nishimiya'
 gpu_packages: 'mesa'
+group: 'laptop'

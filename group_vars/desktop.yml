@@ -1,3 +1,4 @@
 ---
 hostname: 'mitsuha'
 gpu_packages: 'mesa,xf86-video-nouveau'
+group: 'desktop'

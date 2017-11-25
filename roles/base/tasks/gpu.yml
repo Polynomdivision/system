@@ -2,3 +2,4 @@
 - name: Installing the GPU drivers
   pacman:
     name: '{{ gpu_packages }}'
+  when: group != 'vm'
