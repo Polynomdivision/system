@@ -24,3 +24,8 @@
     src: '{{ role_path }}/files/sudo/sudoers'
     dest: /etc/sudoers
     mode: 0400
+
+- name: Adding a sudoers group
+  group:
+    state: present
+    name: sudo

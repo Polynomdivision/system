@@ -77,7 +77,7 @@ echo "KEYMAP=de-latin1" > /etc/vconsole.conf
 
 pacman-key --init
 pacman-key --populate
-pacman -S --noconfirm grub os-prober intel-ucode vim sudo
+pacman -S --noconfirm grub os-prober intel-ucode vim sudo python
 
 mkinitcpio -p linux
 grub-install $BOOT_DRIVE

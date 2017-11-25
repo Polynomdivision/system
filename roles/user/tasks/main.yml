@@ -80,7 +80,7 @@
   file:
     state: directory
     path: '/home/{{ username }}/.config/{{ item }}'
-    mode: '{{ homedire_fmask }}'
+    mode: '{{ homedir_fmask }}'
     owner: '{{ username }}'
   with_items:
     - ''
@@ -95,6 +95,6 @@
 
 - name: Configuring sway
   file:
-    file: link
+    state: link
     src: '{{ role_path }}/files/sway/config'
     dest: '/home/{{ username }}/.config/sway/config'
