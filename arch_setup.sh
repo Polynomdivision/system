@@ -43,9 +43,9 @@ confirm
 
 # Ask for a password and compute the hash
 # For some reason, python2 is not installed
-pacman -Sy --no-confirm python2 python-pip
+pacman -Sy --noconfirm python2 python-pip
 pip install passlib
-HASH=$(python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass(prompt='Enter a password: '))")
+HASH=$(python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass(prompt='Enter a password: ')))")
 
 # Mount everything
 mount $ROOT_PART /mnt
@@ -53,7 +53,7 @@ mkdir -p /mnt/boot
 mount $BOOT_PART /mnt/boot
 
 # Install the base system
-pacstrap -i /mnt base base-devel
+pacstrap /mnt base base-devel
 
 # Update the fstab
 echo "[ UPDATING FSTAB ]"
