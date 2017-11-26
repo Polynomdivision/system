@@ -7,6 +7,7 @@
   copy:
     src: '{{ role_path }}/files/sddm/sddm.conf'
     dest: /etc/sddm.conf
+    mode: 0644
 
 - name: Enabling SDDM
   systemd:
