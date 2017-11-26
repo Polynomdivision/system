@@ -43,15 +43,9 @@ confirm
 
 # Ask for a password and compute the hash
 # For some reason, python2 is not installed
-pacman -Sy python2
-
-echo "Enter a password for alexander"
-HASH=$(python2 -c 'import crypt,uuid,getpass; pw1 = getpass.getpass(); pw2 = getpass.getpass(prompt="Re-enter password: "); print(crypt.crypt(pw1, "$6$%s$" % uuid.uuid4().hex) if pw1 == pw2 else "PASSWORDS DONT MATCH")')
-
-if [ "$HASH" = "PASSWORDS DONT MATCH" ]; then
-	echo "ERROR: Passwords don't match"
-	exit 1
-fi
+pacman -Sy --no-confirm python2 python-pip
+pip install passlib
+HASH=$(python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass(prompt='Enter a password: '))")
 
 # Mount everything
 mount $ROOT_PART /mnt
@@ -87,7 +81,8 @@ mkdir -p /home/alexander/Development/
 pacman -S --noconfirm ansible git
 git clone https://github.com/Polynomdivision/system.git /home/alexander/Development/System
 cd /home/alexander/Development/System/
-ansible-playbook -i /home/alexander/Development/System/inventory/$INSTALL_MODE /home/alexander/Development/SysAdm/System/system.yml --extra-vars 'hash=$HASH' | tee -a /root/deploy_log
+git checkout cleanup/MultiStage
+ansible-playbook -i inventories/$INSTALL_MODE system.yml --extra-vars 'hash=$HASH' | tee -a /root/deploy_log
 
 exit
 EOF
