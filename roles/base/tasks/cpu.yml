@@ -1,0 +1,8 @@
+---
+- name: Installing the Intel Microcode
+  pacman:
+    name: '{{ cpu_microcode }}'
+  when: group != 'vm'
+
+- name: Regenerating the grub config
+  command: grub-mkconfig -o /boot/grub/grub.cfg

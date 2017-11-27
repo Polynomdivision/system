@@ -1,4 +1,5 @@
 ---
 hostname: 'nishimiya'
 gpu_packages: 'mesa'
+cpu_microcode: 'intel-ucode'
 group: 'laptop'
