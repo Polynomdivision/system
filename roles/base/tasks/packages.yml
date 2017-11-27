@@ -33,3 +33,7 @@
 - name: Installing network tools
   pacman:
     name: curl,traceroute,iftop,nmap
+
+- name: Installing Shells
+  pacman:
+    name: zsh
