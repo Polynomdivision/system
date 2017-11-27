@@ -1,3 +1,9 @@
+---
+# Fonts
+- name: Installing fonts
+  pacman:
+    name: ttf-hack,adobe-source-code-pro-fonts,powerline-fonts
+
 - name: Installing a webbrowser
   pacman:
     name: chromium

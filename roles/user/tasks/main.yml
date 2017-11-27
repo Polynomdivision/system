@@ -98,3 +98,5 @@
     state: link
     src: '{{ role_path }}/files/sway/config'
     dest: '/home/{{ username }}/.config/sway/config'
+
+- include: fonts.yml
