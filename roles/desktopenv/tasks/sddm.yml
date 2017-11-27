@@ -1,7 +1,7 @@
 ---
 - name: Installing SDDM
   pacman:
-    name: sddm,breeze
+    name: sddm
 
 - name: Configuring SDDM
   copy:
