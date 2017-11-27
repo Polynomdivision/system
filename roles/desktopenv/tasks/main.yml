@@ -1,4 +1,4 @@
 ---
-- include: sway.yml
-- include: sddm.yml
-- include: development.yml
+- import_tasks: sway.yml
+- import_tasks: sddm.yml
+- import_tasks: development.yml
