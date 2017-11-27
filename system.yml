@@ -2,6 +2,6 @@
 
   roles:
     - { role: base }
-    - { role: user, username: 'alexander', password_hash: '{{ hash }}' }
+    - { role: user, username: 'alexander', hash: '{{ hash }}' }
     - { role: docker }
     - { role: desktopenv }
