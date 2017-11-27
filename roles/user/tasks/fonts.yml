@@ -12,7 +12,7 @@
     - name: Downloading iosevka
       get_url:
         url: 'https://github.com/be5invis/Iosevka/releases/download/v1.12.5/01-iosevka-1.12.5.zip'
-        path: '/home/{{ username }}/.local/share/fonts/iosevka/iosevka.zip'
+        dest: '/home/{{ username }}/.local/share/fonts/iosevka/iosevka.zip'
     - name: Unzipping iosevka
       command: unzip iosevka.zip
       args:
