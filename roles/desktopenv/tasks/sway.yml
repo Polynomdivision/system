@@ -3,6 +3,10 @@
   pacman:
     name: sway
 
+- name: Installing a statusbar
+  pacman:
+    name: i3status
+
 # Create a starter with a German keymap
 - block:
     - copy:
