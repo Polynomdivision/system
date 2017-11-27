@@ -81,7 +81,6 @@ mkdir -p /home/alexander/Development/
 pacman -S --noconfirm ansible git
 git clone https://github.com/Polynomdivision/system.git /home/alexander/Development/System
 cd /home/alexander/Development/System/
-git checkout cleanup/MultiStage
 ansible-playbook -i inventories/$INSTALL_MODE system.yml --extra-vars 'hash=$HASH' | tee -a /root/deploy_log
 
 exit
