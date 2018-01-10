@@ -1,30 +1,21 @@
 ---
-- name: Adding a user
-  user:
-    createhome: yes
-    group: sudo
-    name: '{{ username }}'
-    password: '{{ hash }}'
-    shell: /usr/bin/zsh
-    state: present
-
 - name: Setting the home directory\'s fmask
-  command: chmod -R '{{ homedir_fmask }}' '/home/{{ username }}/'
+  command: chmod -R '{{ homedir_fmask }}' '{{ home }}/'
 
 - name: Setting the home directory\'s owner
-  command: chown -R '{{ username }}' '/home/{{ username }}/'
+  command: chown -R '{{ username }}' '{{ home }}/'
 
 - block:
     - name: Creating the Development folder
       file:
         state: directory
-        path: '/home/{{ username }}/Development/'
+        path: '{{ home }}/Development/'
         mode: '{{ homedir_fmask }}'
         owner: '{{ username }}'
     - name: Creating the Build directory
       file:
         state: directory
-        path: '/home/{{ username }}/Build/'
+        path: '{{ home }}/Build/'
         mode: '{{ homedir_fmask }}'
         owner: '{{ username }}'
 
@@ -32,14 +23,14 @@
   file:
     state: link
     src: '{{ role_path }}/files/zsh/zshrc'
-    dest: '/home/{{ username }}/.zshrc'
+    dest: '{{ home }}/.zshrc'
     force: yes
 
 - name: Preparing oh-my-zsh (2/2)
   file:
     state: link
     src: '{{ role_path }}/files/zsh/bashrc'
-    dest: '/home/{{ username }}/.bashrc'
+    dest: '{{ home }}/.bashrc'
     force: yes
 
 - name: Cloning oh-my-zsh
@@ -47,39 +38,33 @@
     clone: yes
     repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
     depth: 1
-    dest: '/home/{{ username }}/.oh-my-zsh'
+    dest: '{{ home }}/.oh-my-zsh'
 
 - name: Configuring git
   file:
     state: link
     src: '{{ role_path }}/files/git/gitconfig'
-    dest: '/home/{{ username }}/.gitconfig'
+    dest: '{{ home }}/.gitconfig'
 
 - name: Configuring ssh
   block:
     - name: Ensuring .ssh with 700
       file:
         state: directory
-        path: '/home/{{ username }}/.ssh'
+        path: '{{ home }}/.ssh'
         mode: 0700
         owner: '{{ username }}'
     - name: Copying the config
       copy:
         src: '{{ role_path }}/files/ssh/config'
-        dest: '/home/{{ username }}/.ssh/config'
+        dest: '{{ home }}/.ssh/config'
         mode: 0700
         owner: '{{ username }}'
-
-- name: Installing spacemacs
-  git:
-    clone: yes
-    repo: 'https://github.com/syl20bnr/spacemacs'
-    dest: '/home/{{ username }}/.emacs.d/'
 
 - name: Creating .config
   file:
     state: directory
-    path: '/home/{{ username }}/.config/{{ item }}'
+    path: '{{ home }}/.config/{{ item }}'
     mode: '{{ homedir_fmask }}'
     owner: '{{ username }}'
   with_items:
@@ -91,12 +76,14 @@
   file:
     state: link
     src: '{{ role_path }}/files/termite/config'
-    dest: '/home/{{ username }}/.config/termite/config'
+    dest: '{{ home }}/.config/termite/config'
 
 - name: Configuring sway
   file:
     state: link
     src: '{{ role_path }}/files/sway/config'
-    dest: '/home/{{ username }}/.config/sway/config'
+    dest: '{{ home }}/.config/sway/config'
 
 - import_tasks: fonts.yml
+- import_tasks: editor.yml
+- import_tasks: security.yml

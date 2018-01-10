@@ -1,0 +1,11 @@
+---
+# This is just a wrapper, so that we can tell Ansible, that we want
+# all tasks, *EXCEPT* this one, run as '{{ username }}'
+- name: Adding a user
+  user:
+    createhome: yes
+    group: sudo
+    name: '{{ username }}'
+    password: '{{ hash }}'
+    shell: /usr/bin/zsh
+    state: present

@@ -1,2 +1,4 @@
 ---
 homedir_fmask: '0700'
+username: 'alexander'
+home: '/home/{{ username }}'

@@ -2,6 +2,9 @@
 
   roles:
     - { role: base }
-    - { role: user, username: 'alexander', hash: '{{ hash }}' }
+    # As we cannot prepend tasks to certain roles, we just create a role that is
+    # our "pre-task" for the role 'user'
+    - { role: pre_user, hash: '{{ hash }}' }
+    - { role: user, become_user: '{{ username }}', become: yes }
     - { role: docker }
     - { role: desktopenv }

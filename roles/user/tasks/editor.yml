@@ -1,0 +1,12 @@
+---
+- name: Installing spacemacs
+  git:
+    clone: yes
+    repo: 'https://github.com/syl20bnr/spacemacs'
+    dest: '{{ home }}/.emacs.d/'
+
+- name: Configuring spacemacs
+  file:
+    state: link
+    src: '{{ role_path }}//files/spacemacs/spacemacs'
+    dest: '{{ home }}/.spacemacs'

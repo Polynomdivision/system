@@ -1,0 +1,6 @@
+---
+- name: Installing a password manager
+  pacman:
+    name: gopass
+  become_user: root
+  become: yes

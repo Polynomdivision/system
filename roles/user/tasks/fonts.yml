@@ -3,7 +3,7 @@
   file:
     state: directory
     mode: 0700
-    path: '/home/{{ username }}/.local/share/fonts/{{ item }}'
+    path: '{{ home }}/.local/share/fonts/{{ item }}'
   with_items:
     - ''
     - 'iosevka/'
@@ -12,12 +12,12 @@
     - name: Downloading iosevka
       get_url:
         url: 'https://github.com/be5invis/Iosevka/releases/download/v1.12.5/01-iosevka-1.12.5.zip'
-        dest: '/home/{{ username }}/.local/share/fonts/iosevka/iosevka.zip'
+        dest: '{{ home }}/.local/share/fonts/iosevka/iosevka.zip'
     - name: Unzipping iosevka
       command: unzip iosevka.zip
       args:
-        chdir: '/home/{{ username }}/.local/share/fonts/iosevka/'
+        chdir: '{{ home }}/.local/share/fonts/iosevka/'
     - name: Removing the iosevka ZIP
       file:
         state: absent
-        path: '/home/{{ username }}/.local/share/fonts/iosevka/iosevka.zip'
+        path: '{{ home }}/.local/share/fonts/iosevka/iosevka.zip'
