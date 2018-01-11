@@ -1,9 +1,4 @@
 ---
-- name: Setting the home directory\'s fmask
-  command: chmod -R '{{ homedir_fmask }}' '{{ home }}/'
-
-- name: Setting the home directory\'s owner
-  command: chown -R '{{ username }}' '{{ home }}/'
 
 - block:
     - name: Creating the Development folder
