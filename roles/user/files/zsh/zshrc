@@ -22,7 +22,7 @@ export LC_ALL="en_GB.UTF-8"
 #   General purpose
 alias ..="cd .."
 alias ...="cd ../.."
-alias home="cd ${HOME}"p
+alias home="cd ${HOME}"
 alias c="clear"
 alias reload="exec $SHELL -l"
 #	Development
@@ -37,5 +37,3 @@ alias gstatus="git status"
 #	Security
 alias lock="swaylock --image ~/Dropbox/Wallpaper/Anime/__kokonoe_tsubaki_original_drawn_by_haik__778bed06137ac781e471db1521099c41.jpg --scaling fill"
 alias suspend="(lock &) && sleep 1 && systemctl suspend"
-#
-alias tmpsh="sudo docker run -it --rm"
