@@ -8,5 +8,5 @@
 - name: Configuring spacemacs
   file:
     state: link
-    src: '{{ role_path }}//files/spacemacs/spacemacs'
+    src: '{{ role_path }}//files/spacemacs/dotspacemacs'
     dest: '{{ home }}/.spacemacs'
