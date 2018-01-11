@@ -1,1 +1,6 @@
+# Ansible
 *.retry
+
+# Packer
+test/output-qemu/
+test/packer_cache/
