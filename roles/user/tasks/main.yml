@@ -1,5 +1,4 @@
 ---
-
 - block:
     - name: Creating the Development folder
       file:
@@ -48,7 +47,7 @@
         state: directory
         path: '{{ home }}/.ssh'
         mode: 0700
-        owner: '{{ username }}'
+        owner: '{{ usernanme }}'
     - name: Copying the config
       copy:
         src: '{{ role_path }}/files/ssh/config'
@@ -66,6 +65,19 @@
     - ''
     - 'sway/'
     - 'termite/'
+    - 'systemd/'
+    - 'systemd/user/'
+
+- name: Creating .local
+  file:
+    state: directory
+    path: '{{ home }}/.local/{{ item }}'
+    mode: '{{ homedir_fmask }}'
+    owner: '{{ username }}'
+  with_items:
+    - ''
+    - 'bin'
+    - 'share'
 
 - name: Configuring termite
   file:
@@ -79,6 +91,24 @@
     src: '{{ role_path }}/files/sway/config'
     dest: '{{ home }}/.config/sway/config'
 
+- name: Installing systemd user services
+  block:
+    - name: Installing service file
+      copy:
+        src: '{{ role_path }}/files/systemd/{{ item }}'
+        dest: '{{ home }}/.config/systemd/user/{{ item }}'
+        mode: '{{ homedir_fmask }}'
+        owner: '{{ username }}'
+    - name: Enabling service
+      systemd:
+          name: '{{ item }}'
+          user: yes
+          enabled: yes
+  with_items:
+    - 'ssh-agent.service'
+
 - import_tasks: fonts.yml
 - import_tasks: editor.yml
 - import_tasks: security.yml
+- import_tasks: software.yml
+- import_tasks: dropbox.yml

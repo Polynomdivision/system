@@ -1,0 +1,7 @@
+---
+- name: Installing a webbrowser
+  pacman:
+    name: firefox
+  become_user: root
+  become: yes
+  
