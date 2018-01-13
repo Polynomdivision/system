@@ -91,19 +91,20 @@
     src: '{{ role_path }}/files/sway/config'
     dest: '{{ home }}/.config/sway/config'
 
-- name: Installing systemd user services
-  block:
-    - name: Installing service file
-      copy:
-        src: '{{ role_path }}/files/systemd/{{ item }}'
-        dest: '{{ home }}/.config/systemd/user/{{ item }}'
-        mode: '{{ homedir_fmask }}'
-        owner: '{{ username }}'
-    - name: Enabling service
-      systemd:
-          name: '{{ item }}'
-          user: yes
-          enabled: yes
+- name: Installing service file
+  copy:
+    src: '{{ role_path }}/files/systemd/{{ item }}'
+    dest: '{{ home }}/.config/systemd/user/{{ item }}'
+    mode: '{{ homedir_fmask }}'
+    owner: '{{ username }}'
+  with_items:
+    - 'ssh-agent.service'
+
+- name: Enabling service
+  systemd:
+    name: '{{ item }}'
+    user: yes
+    enabled: yes
   with_items:
     - 'ssh-agent.service'
 
