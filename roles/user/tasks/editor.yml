@@ -10,3 +10,11 @@
     state: link
     src: '{{ role_path }}//files/spacemacs/dotspacemacs'
     dest: '{{ home }}/.spacemacs'
+
+- name: Installing packages for emacs
+  block:
+    - name: GhostScript for doc-mode
+      pacman:
+        name: ghostscript
+  become_user: root
+  become: yes
