@@ -4,4 +4,8 @@
     name: firefox
   become_user: root
   become: yes
-  
+
+- name: Installing dotfiles
+  make:
+    target: install
+    chdir: '{{ playbook_dir }}/dotfiles/'

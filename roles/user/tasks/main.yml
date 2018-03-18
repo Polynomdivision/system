@@ -13,103 +13,15 @@
         mode: '{{ homedir_fmask }}'
         owner: '{{ username }}'
 
-- name: Preparing oh-my-zsh (1/2)
-  file:
-    state: link
-    src: '{{ role_path }}/files/zsh/zshrc'
-    dest: '{{ home }}/.zshrc'
-    force: yes
-
-- name: Preparing oh-my-zsh (2/2)
-  file:
-    state: link
-    src: '{{ role_path }}/files/zsh/bashrc'
-    dest: '{{ home }}/.bashrc'
-    force: yes
-
-- name: Cloning oh-my-zsh
-  git:
-    clone: yes
-    repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
-    depth: 1
-    dest: '{{ home }}/.oh-my-zsh'
-
-- name: Configuring git
-  file:
-    state: link
-    src: '{{ role_path }}/files/git/gitconfig'
-    dest: '{{ home }}/.gitconfig'
-
-- name: Configuring ssh
-  block:
-    - name: Ensuring .ssh with 700
-      file:
-        state: directory
-        path: '{{ home }}/.ssh'
-        mode: 0700
-        owner: '{{ usernanme }}'
-    - name: Copying the config
-      copy:
-        src: '{{ role_path }}/files/ssh/config'
-        dest: '{{ home }}/.ssh/config'
-        mode: 0700
-        owner: '{{ username }}'
-
-- name: Creating .config
-  file:
-    state: directory
-    path: '{{ home }}/.config/{{ item }}'
-    mode: '{{ homedir_fmask }}'
-    owner: '{{ username }}'
-  with_items:
-    - ''
-    - 'sway/'
-    - 'termite/'
-    - 'systemd/'
-    - 'systemd/user/'
-
-- name: Creating .local
-  file:
-    state: directory
-    path: '{{ home }}/.local/{{ item }}'
-    mode: '{{ homedir_fmask }}'
-    owner: '{{ username }}'
-  with_items:
-    - ''
-    - 'bin'
-    - 'share'
-
-- name: Configuring termite
-  file:
-    state: link
-    src: '{{ role_path }}/files/termite/config'
-    dest: '{{ home }}/.config/termite/config'
-
-- name: Configuring sway
-  file:
-    state: link
-    src: '{{ role_path }}/files/sway/config'
-    dest: '{{ home }}/.config/sway/config'
-
-- name: Installing service file
-  copy:
-    src: '{{ role_path }}/files/systemd/{{ item }}'
-    dest: '{{ home }}/.config/systemd/user/{{ item }}'
-    mode: '{{ homedir_fmask }}'
-    owner: '{{ username }}'
-  with_items:
-    - 'ssh-agent.service'
-
-- name: Enabling service
-  systemd:
-    name: '{{ item }}'
-    user: yes
-    enabled: yes
-  with_items:
-    - 'ssh-agent.service'
+#- name: Enabling service
+#  systemd:
+#    name: '{{ item }}'
+#    user: yes
+#    enabled: yes
+#  with_items:
+#    - 'ssh-agent.service'
 
 - import_tasks: fonts.yml
 - import_tasks: editor.yml
 - import_tasks: security.yml
 - import_tasks: software.yml
-- import_tasks: dropbox.yml

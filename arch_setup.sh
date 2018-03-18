@@ -79,7 +79,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 mkdir -p /home/alexander/Development/
 pacman -S --noconfirm ansible git
-git clone https://github.com/Polynomdivision/system.git /home/alexander/Development/System
+git clone --recurse-submodules -j2 https://github.com/Polynomdivision/system.git /home/alexander/Development/System
 cd /home/alexander/Development/System/
 ansible-playbook -i inventories/$INSTALL_MODE system.yml --extra-vars 'hash=$HASH' | tee -a /root/deploy_log
 

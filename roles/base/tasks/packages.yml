@@ -26,6 +26,10 @@
   pacman:
     name: unzip,tar,gzip,sed
 
+- name: Installing configuration management tools
+  pacman:
+    name: stow
+
 - name: Installing security tools
   pacman:
     name: openssh,gnupg,firejail,cryptsetup
@@ -34,6 +38,6 @@
   pacman:
     name: curl,traceroute,iftop,nmap
 
-- name: Installing Shells
+- name: Installing shells
   pacman:
     name: zsh
