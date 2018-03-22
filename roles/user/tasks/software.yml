@@ -9,3 +9,4 @@
   make:
     target: install
     chdir: '{{ playbook_dir }}/dotfiles/'
+  ignore_errors: yes
