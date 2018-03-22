@@ -1,0 +1,26 @@
+# vim:set ft=sh
+# MODULES
+MODULES=(ahci sd_mod ext4 hid_generic ohci_pci usbhid)
+
+# BINARIES
+BINARIES=(fsck fsck.ext4 e2fsck)
+
+# FILES
+FILES=()
+
+# HOOKS
+HOOKS=(base)
+
+# COMPRESSION
+# Use this to compress the initramfs image. By default, gzip compression
+# is used. Use 'cat' to create an uncompressed image.
+#COMPRESSION="gzip"
+#COMPRESSION="bzip2"
+#COMPRESSION="lzma"
+#COMPRESSION="xz"
+#COMPRESSION="lzop"
+#COMPRESSION="lz4"
+
+# COMPRESSION_OPTIONS
+# Additional options for the compressor
+#COMPRESSION_OPTIONS=()

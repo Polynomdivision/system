@@ -1,4 +1,15 @@
 ---
+# TODO: Make a slimmed down version for the desktop, too
+- name: Copying slimmed down initcpio
+  file:
+    src: '{{ role_path }}/files/mkinitcpio.laptop'
+    dest: /etc/mkinitcpio.conf
+    force: yes
+  when: group == 'laptop'
+- name: Regenerate initramfs
+  command: mkinitpcio -p linux
+  when: group == 'laptop'
+
 - import_tasks: network.yml
 - import_tasks: security.yml
 - import_tasks: packages.yml
