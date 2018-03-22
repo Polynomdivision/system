@@ -7,7 +7,7 @@
     force: yes
   when: group == 'laptop'
 - name: Regenerate initramfs
-  command: mkinitpcio -p linux
+  command: mkinitcpio -p linux
   when: group == 'laptop'
 
 - import_tasks: network.yml
