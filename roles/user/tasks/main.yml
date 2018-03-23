@@ -28,6 +28,10 @@
       command: 'tar -C {{ home }}/.local/bin -xzf {{ home }}/Build/antibody.tar.gz antibody'
       args:
         creates: '{{ home }}/.local/bin/antibody'
+    - name: Deleting archive
+      file:
+        state: absent
+        path: '{{ home }}/Build/antibody.tar.gz'
 
 - import_tasks: fonts.yml
 - import_tasks: editor.yml
