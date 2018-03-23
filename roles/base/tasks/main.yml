@@ -1,5 +1,9 @@
 ---
 # TODO: Make a slimmed down version for the desktop, too
+- name: Installing btrfs
+  pacman:
+    name: btrfs-progs
+  when: group == 'laptop'
 - name: Copying slimmed down initcpio
   copy:
     src: '{{ role_path }}/files/mkinitcpio.laptop'
