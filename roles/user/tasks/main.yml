@@ -13,13 +13,21 @@
         mode: '{{ homedir_fmask }}'
         owner: '{{ username }}'
 
-#- name: Enabling service
-#  systemd:
-#    name: '{{ item }}'
-#    user: yes
-#    enabled: yes
-#  with_items:
-#    - 'ssh-agent.service'
+- block:
+    - name: Downloading antibody
+      get_url:
+        url: 'https://github.com/getantibody/antibody/releases/download/v3.4.3/antibody_Linux_x86_64.tar.gz'
+        dest: '{{ home }}/Build/antibody.tar.gz'
+        checksum: 'sha256:4f2aa56bf059a111493550a51c6062d9e0ae8c744d06315e2500f8a8b0f0f66a'
+    - name: Ensuring existence of ~/.local/bin/
+      file:
+        state: directory
+        path: '{{ home }}/.local/bin/'
+        mode: '{{ homedir_fmask }}'
+    - name: Install antibody to ~/.local/bin/
+      command: 'tar -C {{ home }}/.local/bin -xzf {{ home }}/Build/antibody.tar.gz antibody'
+      args:
+        creates: '{{ home }}/.local/bin/antibody'
 
 - import_tasks: fonts.yml
 - import_tasks: editor.yml
