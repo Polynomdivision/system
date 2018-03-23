@@ -3,6 +3,10 @@
   pacman:
     name: sway
 
+- name: Installing qt-wayland (for gpg)
+  pacman:
+    name: qt-wayland
+
 - name: Installing a statusbar
   pacman:
     name: i3status
