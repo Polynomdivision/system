@@ -5,7 +5,7 @@
 
 - name: Installing qt-wayland (for gpg)
   pacman:
-    name: qt-wayland
+    name: qt5-wayland
 
 - name: Installing a statusbar
   pacman:
