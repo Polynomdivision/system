@@ -1,26 +1,14 @@
 # vim:set ft=sh
 # MODULES
-MODULES=(ahci sd_mod ext4 hid_generic ohci_pci usbhid)
+MODULES=(ahci sd_mod ext4 btrfs hid_generic ohci_pci usbhid)
 
 # BINARIES
-BINARIES=(fsck fsck.ext4 e2fsck)
+BINARIES=(fsck fsck.ext4 fsck.btrfs btrfsck e2fsck)
 
 # FILES
 FILES=()
 
 # HOOKS
-HOOKS=(base)
-
-# COMPRESSION
-# Use this to compress the initramfs image. By default, gzip compression
-# is used. Use 'cat' to create an uncompressed image.
-#COMPRESSION="gzip"
-#COMPRESSION="bzip2"
-#COMPRESSION="lzma"
-#COMPRESSION="xz"
-#COMPRESSION="lzop"
-#COMPRESSION="lz4"
-
-# COMPRESSION_OPTIONS
-# Additional options for the compressor
-#COMPRESSION_OPTIONS=()
+# As the /usr directory is residing on a different partition, we
+# need to use the "usr" hook, so that we can get that one mounted
+HOOKS=(base usr)
