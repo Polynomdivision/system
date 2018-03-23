@@ -1,0 +1,9 @@
+---
+- name: Disable man-db
+  systemd:
+    name: man-db
+    enabled: no
+- name: Mask lvm2-monitor as we do not use lvm
+  systemd:
+    name: lmv2-monitor
+    mask: yes
