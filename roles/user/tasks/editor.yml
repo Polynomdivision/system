@@ -1,10 +1,4 @@
 ---
-- name: Installing spacemacs
-  git:
-    clone: yes
-    repo: 'https://github.com/syl20bnr/spacemacs'
-    dest: '{{ home }}/.emacs.d/'
-
 - name: Installing packages for emacs
   block:
     - name: GhostScript for doc-mode
