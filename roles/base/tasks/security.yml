@@ -5,6 +5,12 @@
     dest: /etc/sysctl.d/51-kernel.conf
     mode: 0600
 
+- name: Allowing unprivileged usernamespaces
+  copy:
+    src: '{{ role_path }}/files/kernel/52-unpriv-userns.conf'
+    dest: /etc/sysctl.d/52-unpriv-userns.conf
+    mode: 0600
+
 - block:
     - name: Locking the root account
       command: usermod --lock root
