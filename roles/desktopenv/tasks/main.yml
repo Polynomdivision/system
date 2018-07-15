@@ -3,4 +3,5 @@
   when: group != "desktop"
 - import_tasks: kde.yml
   when: group == "desktop"
+- import_tasks: packages.yml
 - import_tasks: development.yml

@@ -6,7 +6,7 @@
 
 - name: Installing a webbrowser
   pacman:
-    name: chromium
+    name: firefox
 
 - name: Installing a PDF reader
   pacman:
