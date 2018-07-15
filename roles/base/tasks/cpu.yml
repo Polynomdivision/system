@@ -1,8 +1,11 @@
 ---
+# Don't install the microcodes on the desktop or the VM
+# Particularly the desktop because microcodes for AMD
+# are in linux-firmware
 - name: Installing the Intel Microcode
   pacman:
     name: '{{ cpu_microcode }}'
-  when: group != 'vm'
+  when: (group != 'vm') and (group != "desktop")
 
 - name: Regenerating the grub config
   command: grub-mkconfig -o /boot/grub/grub.cfg

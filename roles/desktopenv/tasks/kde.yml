@@ -1,0 +1,21 @@
+---
+- name: Install needed packages
+  block:
+    - name: Install X.Org stuff
+      pacman:
+        name: xorg-server,xorg-xinit,xorg-xrandr
+    - name: Install KDE Plasma 5 with only Konsole
+      pacman:
+        name: plasma-desktop,konsole
+    - name: Install SDDM
+      pacman:
+        name: sddm,sddm-kcm
+
+- name: Configure X.Org
+  block:
+    - copy:
+        src: '{{ role_path }}/files/xorg/xinitrc'
+        dest: '{{ home_dir }}/.xinitrc'
+        owner: '{{ username }}'
+
+# TODO: Configure SDDM

@@ -1,5 +1,5 @@
 ---
 hostname: 'mitsuha'
 gpu_packages: 'mesa,xf86-video-nouveau'
-cpu_microcode: 'intel-ucode'
+cpu_microcode: ''
 group: 'desktop'
